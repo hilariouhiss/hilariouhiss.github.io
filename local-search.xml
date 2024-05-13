@@ -3,5 +3,30 @@
   
   
   
+  <entry>
+    <title>Hello_Word</title>
+    <link href="/2024/05/13/Hello-Word/"/>
+    <url>/2024/05/13/Hello-Word/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>用此文章简单记录本站的发展历程</p><h3 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h3><p>2024&#x2F;5&#x2F;13 – 使用 <code>Hexo</code> 和 <code>Github Pages</code> 建立此站</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>other</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>other</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
