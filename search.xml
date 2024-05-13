@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello Word</title>
+    <url>/2024/05/13/Hello-Word/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>用此文章简单记录本站的发展历程</p>
+<h3 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h3><p>2024/5/13 – 使用 <code>Hexo</code> 和 <code>Github Pages</code> 建立此站</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Site</title>
+    <url>/2024/05/13/Hexo-Site/</url>
+    <content><![CDATA[<h2 id="一、前置需求"><a href="#一、前置需求" class="headerlink" title="一、前置需求"></a>一、前置需求</h2><ul>
+<li>已安装 <code>Node</code>，<code>Git</code></li>
+<li>拥有 <code>Github</code> 账号</li>
+<li>拥有 <code>LeanCloud</code> 账号</li>
+</ul>
+<blockquote>
+<p>  注意：本文中的命令无特殊说明均为 <code>Windows</code> 环境</p>
+</blockquote>
+<h2 id="二、建站"><a href="#二、建站" class="headerlink" title="二、建站"></a>二、建站</h2><h3 id="2-1-Github-相关"><a href="#2-1-Github-相关" class="headerlink" title="2.1 Github 相关"></a>2.1 Github 相关</h3><p>登录 <code>GitHub</code> 账号，没有则注册一个，随后创建一个新的仓库</p>
+<p>设置仓库名为：**<your_name>.github.io**</your_name></p>
+<blockquote>
+<p>  注意：仓库名必须为此格式，否则无法通过 <code>https://yourname.github.io</code> 进行访问</p>
+</blockquote>
+<p>本文中使用 <em>hilariouhiss.github.io</em> 作为仓库名</p>
+<h3 id="2-2-Git"><a href="#2-2-Git" class="headerlink" title="2.2 Git"></a>2.2 Git</h3><p>安装 <code>git</code> 后，若不想在部署网站时使用账号密码，则可使用 <code>ssh</code> 或 <code>personal access token</code>，本文中使用 <code>ssh</code> 方式</p>
+<p>配置 <code>git</code> 用户名和 Email ：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">git config <span class="literal">--global</span> user.name <span class="string">"username"</span></span><br><span class="line">git config <span class="literal">--global</span> user.email <span class="string">"example@mail.com"</span></span><br><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> rsa <span class="literal">-C</span> <span class="string">"example@mail.com"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>  注意：以上的 <code>example@mail.com</code> 均为注册到 <code>GitHub</code> 使用的邮箱</p>
+</blockquote>
+<p>随后的提示框为是否设置密码，若不设置密码，则连续三个回车即可</p>
+<p>完成后找到生成的 <code>.ssh</code> 文件夹，<code>Windows</code> 应当在个人文件夹 <code>C:\Users\your_name\.ssh</code> 下</p>
+<p>使用记事本或其他文本编辑器打开 <code>id_rsa.pub</code> 文件，复制其中所有内容</p>
+<p>打开 <code>GitHub</code> 设置，在左侧边栏找到 <code>SSH and GPG keys</code></p>
+<p>点击右上角 <code>New SSH key</code>，<code>Title</code> 为你想设置的名称，将 <code>id_rsa.pub</code> 中的内容复制到下方的文本框中，随后点击下方 <code>Add SSH key</code> 按钮完成</p>
+<p>随后执行以下命令测试是否成功：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输出中看见 Successfully 则成功</p>
+<p>后面推送则无需输入用户名和密码，对于其他仓库也有用</p>
+<h3 id="2-3-Hexo"><a href="#2-3-Hexo" class="headerlink" title="2.3 Hexo"></a>2.3 Hexo</h3><p>在终端或者命令行中执行以下命令，全局安装 <code>hexo</code>：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>若是不想全局安装，也可运行以下命令进行局部安装</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>  注意：以后每次执行 <code>hexo</code> 命令都需进入此文件夹中</p>
+</blockquote>
+<p>完成安装后，运行以下命令进行项目的初始化</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 创建项目</span></span><br><span class="line">npx hexo init &lt;project_name&gt;  </span><br><span class="line"><span class="built_in">cd</span> ./&lt;project_name&gt;</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm i</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中 <code>&lt;project_name&gt;</code> 为你想要设置的名字，以下用 <em>blog-hexo</em> 为例</p>
+<h3 id="2-4-个性化网站"><a href="#2-4-个性化网站" class="headerlink" title="2.4 个性化网站"></a>2.4 个性化网站</h3><p>在创建项目后，<code>hexo</code> 自带一个默认的主题，可执行以下命令进行查看</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npx hexo g &amp;&amp; npx hexo s</span><br></pre></td></tr></tbody></table></figure>
+
+<p>随后访问终端中输出的 <code>url</code>，即可查看到默认主题的网站，一般是 <a href="http://localhost:4000/">localhost:4000</a></p>
+<p>可在 <a href="https://hexo.io/themes/">此处</a> 查看并挑选 <code>hexo</code> 支持的所有主题</p>
+<p>本文演示 <code>next</code> 和 <code>fluid</code> 两个主题</p>
+<h4 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h4><h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>若安装的是 <code>hexo-5.0</code> 以后的版本，可使用如下命令一键安装：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo<span class="literal">-theme-next</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p> 若使用的 <code>Hexo</code> 版本小于 5.0，则执行如下命令：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/next<span class="literal">-theme</span>/hexo<span class="literal">-theme-next</span> themes/next</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>  注意：以上两条命令都是在项目根目录中执行</p>
+</blockquote>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>然后在根目录中新建 <code>_congfig.next.yml</code>，可以将原来 <code>_config.yml</code> 的内容全部或部分复制过来，也可不复制，直接在其中进行配置</p>
+<p>在<strong>主题配置</strong> (<code>_congfig.next.yml</code>) 中添加如下配置：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span></span><br><span class="line"><span class="comment"># scheme: Gemini</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是 <code>Next</code> 主题的四种架构，可以选择自己喜欢的一个，然后将其他三个注释掉</p>
+<p>在 <strong>项目配置</strong> (<code>_config.yml</code>) 中修改 <code>theme</code> 属性为 <code>next</code></p>
+<h5 id="本地运行"><a href="#本地运行" class="headerlink" title="本地运行"></a>本地运行</h5><p>执行：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npx hexo g %% npx hexo s</span><br></pre></td></tr></tbody></table></figure>
+
+<p>再次访问 <a href="http://localhost:4000/">localhost:4000</a>，即可查看新主题</p>
+<h5 id="添加页面"><a href="#添加页面" class="headerlink" title="添加页面"></a>添加页面</h5><p>若想添加页面，可执行以下命令：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npx hexo new page &lt;page_name&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>hexo</code> 将创建一个新的页面，其文件在 <code>/source/&lt;page_name&gt;</code> 中</p>
+<p>我们进入文件夹中，找到 <code>index.md</code>，打开后其内容应该如下：</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line"><span class="section">date: 2024-05-13 11:33:21</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们在其中添加一行 <code>type: about</code>，最后如下</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line">date: 2024-05-13 11:33:21</span><br><span class="line"><span class="section">type: about</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>随后在 <strong>主题配置</strong> 中添加如下行：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>即可在首页菜单中看见 <code>about</code></p>
+<h5 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h5><p>本部分介绍并演示三种插件，分别为：</p>
+<ul>
+<li><a href="https://github.com/next-theme/hexo-generator-searchdb">hexo-generator-searchdb</a></li>
+<li><a href="https://github.com/next-theme/hexo-pangu">hexo-pangu</a></li>
+<li><a href="https://github.com/next-theme/hexo-optimize">hexo-optimize</a></li>
+</ul>
+<h6 id="hexo-generator-searchdb"><a href="#hexo-generator-searchdb" class="headerlink" title="hexo-generator-searchdb"></a>hexo-generator-searchdb</h6><p>该插件用于为 <code>next</code> 主题添加本地搜索功能，使用方法如下：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 项目根目录中</span></span><br><span class="line">npm install hexo<span class="literal">-generator-searchdb</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在 <strong>项目配置</strong> 中添加如下行：</p>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span>  <span class="comment"># 文件路径，可以是.json</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span>  <span class="comment"># 搜索范围，选项：post,page,all，分别表示在博文中，页面中，包括前二者</span></span><br><span class="line">  <span class="attr">content:</span> <span class="literal">true</span>  <span class="comment"># 是否包括每篇文章的内容，若为 false 则包括标题等数据</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span>  <span class="comment"># 页面内容的形式，选项：html,striptags,raw</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h6 id="hexo-pangu"><a href="#hexo-pangu" class="headerlink" title="hexo-pangu"></a>hexo-pangu</h6><p>该插件用于在中英文，标点符号和数字之间添加空格，例如：</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><span class="line">中文chinese -&gt; 中文 chinese</span><br></pre></td></tr></tbody></table></figure>
+
+<p>安装：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo<span class="literal">-pangu</span></span><br><span class="line">npx hexo clean</span><br></pre></td></tr></tbody></table></figure>
+
+<h6 id="hexo-optimize"><a href="#hexo-optimize" class="headerlink" title="hexo-optimize"></a>hexo-optimize</h6><p>该插件用于优化页面加载速度</p>
+<p>安装：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo<span class="literal">-optimize</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用：</p>
+<p>在 <strong>项目配置</strong> 添加：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">filter_optimize:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># static resource versioning</span></span><br><span class="line">  <span class="attr">versioning:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">css:</span></span><br><span class="line">    <span class="comment"># minify all css files</span></span><br><span class="line">    <span class="attr">minify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">excludes:</span></span><br><span class="line">    <span class="comment"># use preload to load css elements dynamically</span></span><br><span class="line">    <span class="attr">delivery:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">'@fortawesome/fontawesome-free'</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">'fonts.googleapis.com'</span></span><br><span class="line">    <span class="comment"># make specific css content inline into the html page</span></span><br><span class="line">    <span class="attr">inlines:</span></span><br><span class="line">      <span class="comment"># support full path only</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">css/main.css</span></span><br><span class="line">  <span class="attr">js:</span></span><br><span class="line">    <span class="comment"># minify all js files</span></span><br><span class="line">    <span class="attr">minify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">excludes:</span></span><br><span class="line">    <span class="comment"># remove the comments in each of the js files</span></span><br><span class="line">    <span class="attr">remove_comments:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">html:</span></span><br><span class="line">    <span class="comment"># minify all html files</span></span><br><span class="line">    <span class="attr">minify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">excludes:</span></span><br><span class="line">  <span class="comment"># set the priority of this plugin,</span></span><br><span class="line">  <span class="comment"># lower means it will be executed first, default of Hexo is 10</span></span><br><span class="line">  <span class="attr">priority:</span> <span class="number">12</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Fluid"><a href="#Fluid" class="headerlink" title="Fluid"></a>Fluid</h4><p><strong>安装</strong>：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install <span class="literal">--save</span> hexo<span class="literal">-theme-fluid</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>或者下载 <a href="https://github.com/fluid-dev/hexo-theme-fluid/releases">最新 release 版本</a>，然后解压至项目 <code>/themes</code> 文件夹中重命名为 <code>fluid</code></p>
+<p><strong>使用</strong>：</p>
+<p>在 <strong>项目配置</strong> 中修改 <code>theme</code> 属性为 <code>fluid</code></p>
+<p>首次使用关于页需要先手动创建</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npx hexo new page about</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="三、部署"><a href="#三、部署" class="headerlink" title="三、部署"></a>三、部署</h2><h3 id="一键部署"><a href="#一键部署" class="headerlink" title="一键部署"></a>一键部署</h3><p>安装插件</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo<span class="literal">-deployer-git</span> <span class="literal">--save</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>添加 <strong>项目配置</strong>：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">&lt;repository</span> <span class="string">url&gt;</span></span><br><span class="line">  <span class="attr">branch:</span> [<span class="string">branch</span>]</span><br><span class="line">  <span class="attr">message:</span> [<span class="string">message</span>]</span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">参数</td>
+<td align="left">描述</td>
+<td align="left">默认</td>
+</tr>
+<tr>
+<td align="left"><code>repo</code></td>
+<td align="left">库（Repository）地址</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>branch</code></td>
+<td align="left">分支名称</td>
+<td align="left"><code>gh-pages</code> (GitHub) <code>coding-pages</code> (Coding.net) <code>master</code> (others)</td>
+</tr>
+<tr>
+<td align="left"><code>message</code></td>
+<td align="left">自定义提交信息</td>
+<td align="left"><code>Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>token</code></td>
+<td align="left">可选的令牌值，用于认证 repo。用 <code>$</code> 作为前缀从而从环境变量中读取令牌</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>  注意：除非你使用令牌或 SSH 密钥认证，否则你会被提示提供目标仓库的用户名和密码。</p>
+</blockquote>
+<p>生成站点文件并推送至远程库：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><span class="line">npx hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="四、参考链接"><a href="#四、参考链接" class="headerlink" title="四、参考链接"></a>四、参考链接</h2><p><a href="https://hexo.fluid-dev.com/docs/start/">Hexo Fluid 用户手册</a></p>
+<p><a href="https://theme-next.js.org/">Hexo Next 官网</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/">Hexo 文档</a></p>
+]]></content>
+      <categories>
+        <category>website</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+        <tag>node</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+</search>
