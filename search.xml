@@ -3,10 +3,7 @@
   <entry>
     <title>Hello Word</title>
     <url>/2024/05/13/Hello-Word/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>用此文章简单记录本站的发展历程</p>
-<span id="more"></span>
-
-<h3 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h3><p>2024/5/13 – 使用 <code>Hexo</code> 和 <code>Github Pages</code> 建立此站</p>
+    <content><![CDATA[<h3 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h3><p>2024/5/13 – 使用 <code>Hexo</code> 和 <code>Github Pages</code> 建立此站</p>
 ]]></content>
       <categories>
         <category>other</category>
