@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello Word</title>
-    <url>/2024/05/13/Hello-Word/</url>
-    <content><![CDATA[<h3 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h3><p>2024/5/13 – 使用 <code>Hexo</code> 和 <code>Github Pages</code> 建立此站</p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo Site</title>
     <url>/2024/05/13/Hexo-Site/</url>
     <content><![CDATA[<h2 id="一、前置需求"><a href="#一、前置需求" class="headerlink" title="一、前置需求"></a>一、前置需求</h2><ul>
@@ -195,6 +182,17 @@
       </tags>
   </entry>
   <entry>
+    <title>git 常用命令</title>
+    <url>/2024/05/16/git-commands/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 openGauss 作为数据源</title>
     <url>/2024/05/13/openGauss/</url>
     <content><![CDATA[<h2 id="一、前置准备"><a href="#一、前置准备" class="headerlink" title="一、前置准备"></a>一、前置准备</h2><ul>
@@ -322,5 +320,30 @@
 <p>在 IPv4 连接下增加自己希望的数据库，用户，IP 地址，方法</p>
 <p>如：<code>host    postgres    temp    0.0.0.0/0    sha256</code>，表示允许 temp 用户从任意 IP 地址连接 postgres 数据库</p>
 ]]></content>
+      <categories>
+        <category>database</category>
+      </categories>
+      <tags>
+        <tag>opanGauss</tag>
+        <tag>huawei</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Todo</title>
+    <url>/2024/05/16/todo/</url>
+    <content><![CDATA[<ul>
+<li><input disabled="" type="checkbox"> git 常用命令</li>
+<li><input disabled="" type="checkbox"> Java 反射</li>
+<li><input disabled="" type="checkbox"> JDK 21 虚拟线程</li>
+<li><input disabled="" type="checkbox"> 编译原理学习知识总结</li>
+<li><input disabled="" type="checkbox"> Jenkins</li>
+</ul>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>todo</tag>
+      </tags>
   </entry>
 </search>
