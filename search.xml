@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔试题</title>
+    <url>/2024/05/20/Interview-questions/</url>
+    <content><![CDATA[<h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><p>1. 你的 GitHub 账号网址是什么？（或者 Gitee、Coding、GitLab 等）在上面你提交过什么项目代码？</p>
+<p>答：我的 GitHub 账号地址：<a href="https://github.com/hilariouhiss%EF%BC%8C[hilariouhiss.github.io](https://github.com/hilariouhiss/hilariouhiss.github.io)">https://github.com/hilariouhiss，[hilariouhiss.github.io](https://github.com/hilariouhiss/hilariouhiss.github.io)</a> 是我的个人博客，<a href="https://github.com/hilariouhiss/vevss">vevss</a> 是我的软件工程作业后端</p>
+<p>2. 你是否使用过 Linux 系统？你还使用过哪些开源软件？（如 MySQL、Redis、Docker 等）</p>
+<p>答：使用过 Linux 系统的有 Ubuntu，openEuler。开源软件使用过：MySQL，PostgreSQL，Docker，Jenkins，Nodejs 等常用开发和部署等相关的软件</p>
+<h2 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h2><p>1. 数组和链表数据结构的主要差别是什么？ ( <strong>A</strong>)</p>
+<p> A. 数组执行插入操作更快 B. 链表允许快速的随机访问 C. 链表执行插入和删除操作更快 D. 数组和链表在插入和删除操作上速度相同</p>
+<p>2. 哈希表的平均查询时间复杂度是多少？ ( <strong>A</strong>)</p>
+<p> A. O(1) B. O(n) C. O(log(n)) D. O(n^2)</p>
+<p>3. 动态数组的扩容通常采用什么策略？ ( <strong>C</strong>) </p>
+<p>A. 增加固定大小空间 B. 翻倍扩容 C. 增加一半大小空间 D. 仅扩容一个元素空间 </p>
+<p>4. 空间复杂度确定是 O (1) 的排序算法是？( <strong>B</strong>) </p>
+<p>A. 快速排序 B. 堆排序 C. 归并排序 D. 插入排序</p>
+<p>5. 某二叉树的前序遍历序列是 ABDFCE，中序遍历序列是 DBFCAE，那么其后序遍历序列是什么？( <strong>A</strong>) </p>
+<p>A. DCFBEA B. DFCBAE C. DFBCEA D. DFCAEB</p>
+<p>6. 二分查找算法的前提条件是什么？(<strong>A</strong> ) </p>
+<p>A. 数组排序 B. 数组长度是偶数 C. 数组元素不重复 D. 数组元素是整数</p>
+<p>7. 归并排序中，” 归并” 指的是什么过程？( <strong>B</strong>) </p>
+<p>A. 将数组拆分成更小的数组 B. 将两个有序数组合并为一个有序数组 C. 对数组进行重新排序 D. 分析数组的最大值和最小值</p>
+<p>8. 以下哪种数据结构不是线性结构？( <strong>D</strong>)</p>
+<p>A. 数组 B. 链表 C. 栈 D. 二叉树</p>
+<p>9.AVL 树是一种什么类型的树？( <strong>C</strong>) </p>
+<p>A. 平衡二叉搜索树 B. 完全二叉树 C. 二叉搜索树 D. 多叉树</p>
+<p>10. 哪种搜索算法在未排序的数据集上最快？(<strong>B</strong> )</p>
+<p>A. 二分查找 B. 线性查找 C. 深度优先搜索 D. 广度优先搜索</p>
+<p>11. 在 Java 中，如何正确地比较两个字符串是否相等？( <strong>B</strong>) </p>
+<p>A. == B. equals() C. equal() D. Both A and B</p>
+<p>12.Java 的集合框架中，Set 接口的特点是？(<strong>B</strong> ) </p>
+<p>A. 元素可以重复 B. 元素不可以重复 C. 有序集合 D. 元素是有序可重复的</p>
+<p>13.String 类在 Java 中属于什么类型？( <strong>C</strong>) </p>
+<p>A. 基本数据类型 B. 抽象数据类型 C. 引用数据类型 D. 无法确定</p>
+<p>14. 如何在 Java 中正确停止一个线程？( <strong>D</strong>) </p>
+<p>A. 使用 stop () 方法 B. 使用 interrupt () 方法 C. 设置线程为 null D. 直接使用 exit () 方法退出</p>
+<p>15. 下面关于接口和抽象类的描述，哪个是不正确的？( <strong>B</strong>) </p>
+<p>A. 一个类可以实现多个接口 B. 接口可以包含普通方法实现 C. 抽象类不能被实例化 D. 抽象类可以包含具体方法</p>
+<h2 id="实操题"><a href="#实操题" class="headerlink" title="实操题"></a>实操题</h2><p>仓库地址是：<a href="https://github.com/hilariouhiss/library-management-system%E3%80%82">https://github.com/hilariouhiss/library-management-system。</a></p>
+<p>前端在分支 ui 中，后端在 main 分支</p>
+<p>登录与注册功能</p>
+<p><img src="/./Interview-questions/image-20240522162441501.png" alt="image-20240522162441501"></p>
+<p>登录或注册后自动跳转至借阅记录页面，若是管理员则左上角 <code>Management</code> 管理页面</p>
+<p><img src="/./Interview-questions/image-20240522162617893.png" alt="image-20240522162617893"></p>
+<p>所有图书页面，若是图书已被借则显示 <code>borrowed</code>，数量为 0 则无法借阅</p>
+<p><img src="/./Interview-questions/image-20240522164222746.png" alt="image-20240522164222746"></p>
+<p>左上角按钮切换用户管理和图书管理</p>
+<p><img src="/./Interview-questions/image-20240522162650848.png" alt="image-20240522162650848"></p>
+<p>按下 <code>Add Book</code> 会弹出一个含有表单的对话框，填入相关信息则可添加图书，未对输入字段做校验，如数量不能小于 0</p>
+<p><img src="/./Interview-questions/image-20240522162702943.png" alt="image-20240522162702943"></p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Site</title>
     <url>/2024/05/13/Hexo-Site/</url>
     <content><![CDATA[<h2 id="一、前置需求"><a href="#一、前置需求" class="headerlink" title="一、前置需求"></a>一、前置需求</h2><ul>
@@ -193,6 +250,25 @@
       </tags>
   </entry>
   <entry>
+    <title>Todo</title>
+    <url>/2024/05/16/todo/</url>
+    <content><![CDATA[<ul>
+<li><input disabled="" type="checkbox"> git 常用命令</li>
+<li><input disabled="" type="checkbox"> Java 反射</li>
+<li><input disabled="" type="checkbox"> JDK 21 虚拟线程</li>
+<li><input disabled="" type="checkbox"> 编译原理学习知识总结</li>
+<li><input disabled="" type="checkbox"> 使用 Jenkins 持续部署 Maven 项目</li>
+<li><input disabled="" type="checkbox"> CentOS 安装 Docker</li>
+</ul>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>todo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 openGauss 作为数据源</title>
     <url>/2024/05/13/openGauss/</url>
     <content><![CDATA[<h2 id="一、前置准备"><a href="#一、前置准备" class="headerlink" title="一、前置准备"></a>一、前置准备</h2><ul>
@@ -326,24 +402,6 @@
       <tags>
         <tag>opanGauss</tag>
         <tag>huawei</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Todo</title>
-    <url>/2024/05/16/todo/</url>
-    <content><![CDATA[<ul>
-<li><input disabled="" type="checkbox"> git 常用命令</li>
-<li><input disabled="" type="checkbox"> Java 反射</li>
-<li><input disabled="" type="checkbox"> JDK 21 虚拟线程</li>
-<li><input disabled="" type="checkbox"> 编译原理学习知识总结</li>
-<li><input disabled="" type="checkbox"> Jenkins</li>
-</ul>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-      <tags>
-        <tag>todo</tag>
       </tags>
   </entry>
 </search>
