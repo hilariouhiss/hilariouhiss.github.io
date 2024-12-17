@@ -76,7 +76,7 @@ params:
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
-        enabled: true
+        enabled: false
         provider: giscus
 
         disqusjs:
@@ -146,11 +146,7 @@ params:
             lightTheme: light
             darkTheme: dark
             reactionsEnabled: 1
-            emitMetadata: 1
-            dataLoading: lazy
-            inputPosition: top
-            lang:
-            crossorigin: anonymous
+            emitMetadata: 0
 
         gitalk:
             owner:
