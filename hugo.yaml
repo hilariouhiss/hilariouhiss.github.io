@@ -76,8 +76,8 @@ params:
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
-        enabled: false
-        provider: disqus
+        enabled: true
+        provider: giscus
 
         disqusjs:
             shortname:
@@ -138,15 +138,19 @@ params:
             siteName: "" # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
 
         giscus:
-            repo:
-            repoID:
-            category:
-            categoryID:
-            mapping:
-            lightTheme:
-            darkTheme:
+            repo: hilariouhiss/hilariouhiss.github.io
+            repoID: R_kgDOL6dyzg
+            category: Announcements
+            categoryID: DIC_kwDOL6dyzs4ClSIe
+            mapping: pathname
+            lightTheme: light
+            darkTheme: dark
             reactionsEnabled: 1
-            emitMetadata: 0
+            emitMetadata: 1
+            dataLoading: lazy
+            inputPosition: top
+            lang:
+            crossorigin: anonymous
 
         gitalk:
             owner:
