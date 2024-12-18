@@ -1,6 +1,7 @@
 ---
 title: 高考志愿辅助填报系统
 date: 2024-12-04 15:16:59
+slug: gaokao-vas
 categories:
   - 开发
   - 总结

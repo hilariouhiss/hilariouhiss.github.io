@@ -1,6 +1,7 @@
 ---
 title: MySQL查询
-date: 2024-12-16 14:39:17
+date: 2024-12-16
+slug: mysql-query
 categories:
   - 知识
   - MySQL

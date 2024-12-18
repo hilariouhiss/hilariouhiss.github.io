@@ -1,7 +1,7 @@
 ---
 title: MySQL数据类型
 date: 2024-12-12
-lastmod: 2024-12-17
+slug: mysql-datatype
 categories:
   - 知识
   - MySQL

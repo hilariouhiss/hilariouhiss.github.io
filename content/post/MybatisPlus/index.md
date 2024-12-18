@@ -1,6 +1,7 @@
 ---
 title: MybatisPlus
 date: 2024-12-16 19:56:06
+slug: mybatisplus
 categories:
   - 知识
   - MybatisPlus

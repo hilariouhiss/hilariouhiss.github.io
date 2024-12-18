@@ -1,6 +1,7 @@
 ---
-title: Java 并发编程
+title: Java并发编程
 date: 2024-12-17
+slug: java-concurrent
 categories:
   - 知识
   - Java

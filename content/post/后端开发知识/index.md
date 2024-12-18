@@ -1,6 +1,7 @@
 ---
 title: 后端开发面试问题
-date: 2024-12-08 11:02:04
+date: 2024-12-08
+slug: general-backend-dev-problems
 categories:
   - 知识
   - 面试
