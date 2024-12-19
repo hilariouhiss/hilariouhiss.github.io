@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8156b46e652cde26",
+        "id": "310b6f5967561773",
         "type": "tabs",
         "children": [
           {
-            "id": "bf2dd3ca3827c3c3",
+            "id": "9dce525d3761983d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_index.en.md",
+                "file": "post/Java并发编程/index.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "_index.en"
+              "title": "index"
             }
           }
         ]
@@ -90,7 +90,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 216.5
+    "width": 216.5,
+    "collapsed": true
   },
   "right": {
     "id": "b0b9178755cbba83",
@@ -179,16 +180,16 @@
       "workspaces:管理工作区布局": false
     }
   },
-  "active": "bf2dd3ca3827c3c3",
+  "active": "9dce525d3761983d",
   "lastOpenFiles": [
-    "_index.zh-cn.md",
-    "_index.en.md",
-    "post/高考志愿辅助填报系统/index.md",
-    "post/后端开发知识/index.md",
+    "post/Java并发编程/index.md",
     "post/MySQL查询/index.md",
     "post/MySQL数据类型/index.md",
+    "_index.en.md",
+    "_index.zh-cn.md",
+    "post/高考志愿辅助填报系统/index.md",
+    "post/后端开发知识/index.md",
     "post/MybatisPlus/index.md",
-    "post/Java并发编程/index.md",
     "page/archives/index.zh-cn.md",
     "page/categories/index.zh-cn.md",
     "page/archives/index.en.md",

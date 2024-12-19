@@ -17,7 +17,7 @@ draft: true
 
 ### 引入依赖
 
-Spring Boot 3版本如下，boot~~3~~ 即为2版本
+Spring Boot 3版本如下，boot~~3~~ 即为 2 版本
 
 ```xml
 <dependency>
@@ -29,7 +29,7 @@ Spring Boot 3版本如下，boot~~3~~ 即为2版本
 
 ### 配置
 
-在 application.yml 文件中添加数据源配置，示例如下：
+在 `application.yml` 文件中添加数据源配置，示例如下：
 
 ```yaml
 # DataSource Config
@@ -43,6 +43,6 @@ spring:
 
 MySQL的 `url` 串常使用配置：`useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8`
 
-禁用SSL，设置时区为UTC，使用Unicode字符集和UTF-8编码
+禁用 SSL，设置时区为 UTC，使用 Unicode 字符集和 UTF-8 编码
 
 ## 常用注解

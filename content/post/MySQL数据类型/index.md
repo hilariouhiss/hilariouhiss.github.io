@@ -5,7 +5,7 @@ slug: mysql-datatype
 categories:
   - 知识
   - MySQL
-description: 对MySQL 数字类型，日期时间，字符串类型，空间数据类型和JSON类型的学习
+description: 对MySQL 数字类型，日期时间，字符串类型，空间数据类型和 JSON 类型的学习
 ---
 
 ## 分类
@@ -16,7 +16,7 @@ description: 对MySQL 数字类型，日期时间，字符串类型，空间数�
 
 - *M*：对于整型，表示最大显示宽度；对于浮点型和顶点型，是可存储的总位数；对于字符串类型，是最大长度。*M* 的最大值取决与数据类型
 - *D*：对于浮点型和定点型，表示小数点后的位数。其最大值可能是30，但不应该大于 *M* - 2
-- *fsp*：对于 `TIME`，`DATETIME` 和 `TIMESTAMP`，表示秒的小数部分的位数；*fsp* 值的范围为 [0, 6]，默认为0，而非标准SQL的6，因为需要向后兼容
+- *fsp*：对于 `TIME`，`DATETIME` 和 `TIMESTAMP`，表示秒的小数部分的位数；*fsp* 值的范围为 [0，6]，默认为0，而非标准 SQL 的6，因为需要向后兼容
 - `[]` 方括号表示可选部分
 - ~~已弃用~~ 删除线表示已弃用，或被删除
 
@@ -53,7 +53,7 @@ description: 对MySQL 数字类型，日期时间，字符串类型，空间数�
 | `FLOAT`                                                      | 单精度浮点数<br/>精度约为 7 位小数                           |
 | `DOUBLE`                                                     | 双精度浮点数<br />精度约为 15 位小数                         |
 | `FLOAT(p)`                                                   | 为兼容 ODBC 的语法<br />`p` 仅用于确定存储大小<br/>`0 ≤ p ≤ 24` 时，类型为 `FLOAT`<br />`25 ≤ p ≤ 53` 时，类型为 `DOUBLE` |
-| `DECIMAL[(M[,D])]`                                           | 定点数<br />`M` 是总位数（最大 `65`），`D` 是小数位数（最大 `30`）<br/>默认值：`M=10, D=0`<br />可用此类型控制数字的精度 |
+| `DECIMAL[(M[,D])]`                                           | 定点数<br />`M` 是总位数（最大 `65`），`D` 是小数位数（最大 `30`）<br/>默认值：`M=10，D=0`<br />可用此类型控制数字的精度 |
 | `DEC[(M[,D])]`<br />`NUMERIC[(M[,D])]`<br />`FIXED[(M[,D])]` | `DECIMAL` 的同义词<br />`FIXED` 用于兼容其他数据库系统       |
 | `DOUBLE PRECISION[(M,D)]`,<br />`REAL[(M,D)]`                | `DOUBLE` 的同义词。<br/>启用 `REAL_AS_FLOAT` SQL 模式时，`REAL` 是 `FLOAT` 的同义词 |
 
@@ -79,13 +79,13 @@ description: 对MySQL 数字类型，日期时间，字符串类型，空间数�
 
 ##### 超限
 
-`strict SQL` 模式中，当数据大小超限时，依照SQL标准，MySQL会拒绝数据，插入失败并抛出错误；非严格模式中，MySQL会将值限定在规定的范围之内，然后存储。例子如下：
+`strict SQL` 模式中，当数据大小超限时，依照 SQL 标准，MySQL会拒绝数据，插入失败并抛出错误；非严格模式中，MySQL会将值限定在规定的范围之内，然后存储。例子如下：
 
 ```sql
-CREATE TABLE t1 (i1 TINYINT, I2 TINYINT UNSIGNED);
+CREATE TABLE t1 (i1 TINYINT，I2 TINYINT UNSIGNED);
 
 mysql> SET sql_mode = '';
-mysql> INSERT INTO t1 (i1, i2) VALUES(256, 256);
+mysql> INSERT INTO t1 (i1，i2) VALUES(256，256);
 mysql> SHOW WARNINGS;
 +---------+------+---------------------------------------------+
 | Level   | Code | Message                                     |
@@ -107,7 +107,7 @@ mysql> SELECT * FROM t1;
 
 ```sql
 mysql> SET sql_mode = '';
-Query OK, 0 rows affected (0.00 sec)
+Query OK，0 rows affected (0.00 sec)
 
 mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '(cast(0 as unsigned) - 1)'
@@ -125,7 +125,7 @@ mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 
 ## 日期和时间类型
 
-[MySQL ：： MySQL 8.0 参考手册 ：： 13.2 日期和时间数据类型 --- MySQL :: MySQL 8.0 Reference Manual :: 13.2 Date and Time Data Types](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html)
+[MySQL : :  MySQL 8.0 参考手册 : :  13.2 日期和时间数据类型 --- MySQL :: MySQL 8.0 Reference Manual :: 13.2 Date and Time Data Types](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html)
 
 ### 概述
 
@@ -141,7 +141,7 @@ mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 
 输入与输出：MySQL 日期标准格式为“年-月-日”，其他格式可使用 `STR_TO_DATE()` 函数进行转换
 
-两位数年份的解释，[2-Digit Years in Dates](https://dev.mysql.com/doc/refman/8.0/en/two-digit-years.html)：
+两位数年份的解释，[2-Digit Years in Dates](https://dev.mysql.com/doc/refman/8.0/en/two-digit-years.html): 
 
 - 70-99 被看作 1970-1999
 - 00-69 被看作 2000-2069
@@ -163,7 +163,7 @@ MySQL允许存储如 `0000-00-00` 全零值的日期，这样比使用 `NULL` �
 `TIME`，`DATETIME`，`TIMESTAMP` 支持设置秒的小数精度，至高6位，格式如下：
 
 ```sql
-CREATE TABLE t1 (t TIME(3), dt DATETIME(6), ts TIMESTAMP(0));  # 若不指定，默认为 0，与 SQL 标准的 6 不同
+CREATE TABLE t1 (t TIME(3)，dt DATETIME(6)，ts TIMESTAMP(0));  # 若不指定，默认为 0，与 SQL 标准的 6 不同
 ```
 
 | 数据类型         | 描述                                                         | 零值                |
@@ -269,7 +269,7 @@ CREATE TABLE t1 (
 
 ```sql
 CREATE TABLE t1 (
-  ts1 TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,     -- 默认值 0
+  ts1 TIMESTAMP ON UPDATE CURRENT_TIMESTAMP，    -- 默认值 0
   ts2 TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP -- 默认值 NULL
 );
 
@@ -281,9 +281,9 @@ CREATE TABLE t1 (
 当如下舍入情况发生时，MySQL 将不会有任何警告或错误：
 
 ```sql
-CREATE TABLE fractest( c1 TIME(2), c2 DATETIME(2), c3 TIMESTAMP(2) );
+CREATE TABLE fractest( c1 TIME(2)，c2 DATETIME(2)，c3 TIMESTAMP(2) );
 INSERT INTO fractest VALUES
-('17:51:04.777', '2018-09-08 17:51:04.777', '2018-09-08 17:51:04.777');
+('17:51:04.777'，'2018-09-08 17:51:04.777'，'2018-09-08 17:51:04.777');
 
 mysql> SELECT * FROM fractest;
 +-------------+------------------------+------------------------+
@@ -380,15 +380,15 @@ MySQL允许创建 `CHAR(0)` 列，对于适配必须有此列，但不会使用�
 
 `CHAR` 存储固定长度的字符串，长度不够者右侧用空格补齐，查询时去除。
 
-对于 `VARCHAR`，若数据尾随空格超长，MySQL将自动截断并**给出警告**，若非空格字符超长则报错，关闭严格SQL模式后将截断并生成警告。
+对于 `VARCHAR`，若数据尾随空格超长，MySQL将自动截断并**给出警告**，若非空格字符超长则报错，关闭严格 SQL 模式后将截断并生成警告。
 
-对于 `CHAR`，若数据尾随空格超长，MySQL将自动截断，**并不会警告**，但非空格字符超长则报错，关闭严格SQL模式后将截断并生成警告。
+对于 `CHAR`，若数据尾随空格超长，MySQL将自动截断，**并不会警告**，但非空格字符超长则报错，关闭严格 SQL 模式后将截断并生成警告。
 
 加上 `TEXT`，三者在比较排序时，使用 `NO PAD` 的排序规则将视尾随空格与其他字符为相同地位，`PAD SPACE` 的排序规则将无视尾随空格。
 
 ### BINARY，VARBINARY
 
-超长数据会导致报错，关闭严格SQL模式后截断存储并警告
+超长数据会导致报错，关闭严格 SQL 模式后截断存储并警告
 
 对于 `BINARY`，不够固定长度的数据会在右侧补 `0x00`（即 `\0`）以补齐长度，并且查询时不去除，`0x00` 是零字节，顺序在空格前
 
@@ -402,9 +402,9 @@ MySQL客户端中，二进制字符串使用十六进制显示，使用 `--binar
 
 二者均有小，标准，中，大四种子类型，且一一对应，只是存储的数据类型不同
 
-对于非尾随空格超长的数据均会报错，未启用严格SQL模式时会自动截断并警告
+对于非尾随空格超长的数据均会报错，未启用严格 SQL 模式时会自动截断并警告
 
-尾随空格超长的数据插入到 `TEXT` 中时，空格会被截断并警告，不管SQL模式
+尾随空格超长的数据插入到 `TEXT` 中时，空格会被截断并警告，不管 SQL 模式
 
 插入时均无填充补齐，查询时也无任何去除
 
@@ -443,11 +443,11 @@ Connector/ODBC 将 `BLOB` 值定义为 `LONGVARBINARY`，将 `TEXT` 值定义为
 ```sql
 CREATE TABLE shirts (
     name VARCHAR(40),
-    size ENUM('x-small', 'small', 'medium', 'large', 'x-large')
+    size ENUM('x-small'，'small'，'medium'，'large'，'x-large')
 );
-INSERT INTO shirts (name, size) VALUES ('dress shirt','large'), ('t-shirt','medium'),
+INSERT INTO shirts (name，size) VALUES ('dress shirt','large')，('t-shirt','medium'),
   ('polo shirt','small');
-SELECT name, size FROM shirts WHERE size = 'medium';
+SELECT name，size FROM shirts WHERE size = 'medium';
 +---------+--------+
 | name    | size   |
 +---------+--------+
@@ -457,7 +457,7 @@ UPDATE shirts SET size = 'small' WHERE size = 'large';
 COMMIT;
 ```
 
-列表中的枚举值对应的编码值从 1 开始，而 `NULL` 对应 `NULL`，`''` 对应 `0`（表示出错，如未启用严格SQL模式下被赋予不合法的值时），可使用 `SELECT * FROM tbl_name WHERE enum_col=0;` 来查看是否有行被赋予非法值
+列表中的枚举值对应的编码值从 1 开始，而 `NULL` 对应 `NULL`，`''` 对应 `0`（表示出错，如未启用严格 SQL 模式下被赋予不合法的值时），可使用 `SELECT * FROM tbl_name WHERE enum_col=0;` 来查看是否有行被赋予非法值
 
 若列允许 `NULL`，则 `NULL` 是默认值，若列为 `NOT NULL`，则默认值是枚举值列表的第一个。
 
@@ -469,9 +469,9 @@ COMMIT;
 
 ```sql
 CREATE TABLE example (
-    status ENUM('Active', 'Inactive', 'Pending')
+    status ENUM('Active'，'Inactive'，'Pending')
 );
-INSERT INTO example (status) VALUES ('ACTIVE'), ('inactive'), ('PENDING');
+INSERT INTO example (status) VALUES ('ACTIVE')，('inactive')，('PENDING');
 SELECT status FROM example;
 +----------+
 | status   |
@@ -492,13 +492,13 @@ SELECT status FROM example;
 
 ```sql
 CREATE TABLE sizes (
-    size ENUM('small', CONCAT('med','ium'), 'large')
+    size ENUM('small'，CONCAT('med','ium')，'large')
 );
 -- 错误
 SET @mysize = 'medium';
 
 CREATE TABLE sizes (
-    size ENUM('small', @mysize, 'large')
+    size ENUM('small'，@mysize，'large')
 );
 -- 错误
 ```
@@ -533,7 +533,7 @@ CREATE TABLE sizes (
 ```sql
 mysql> SELECT * FROM tbl_name WHERE FIND_IN_SET('value',set_col)>0;
 -- 查找 set_col 列是否存在 value 成员
--- FIND_IN_SET 函数是将列按 , 分隔，然后依次匹配，要求列必须是 SET 或 按 , 分隔的列表。返回 value 所在的位置，首位为 1，失败为 0
+-- FIND_IN_SET 函数是将列按 ，分隔，然后依次匹配，要求列必须是 SET 或 按 ，分隔的列表。返回 value 所在的位置，首位为 1，失败为 0
 
 mysql> SELECT * FROM tbl_name WHERE set_col LIKE '%value%';
 -- 在 set_col 列直接进行模式匹配，a,ab,c 中查找 b 也可成功，不精确。成功返回 1，失败则 0
@@ -564,7 +564,7 @@ MySQL 遵从 [RFC 7159](https://tools.ietf.org/html/rfc7159) 定义的 JSON
 
 优势：
 
-- 自动验证存储在其中的JSON数据
+- 自动验证存储在其中的 JSON 数据
 - 存储格式优化。增加了读取的速度；服务器读取时无需先转为文本再解析；使用结构化的二进制格式存储，使得服务器可依照键或索引查找，而无需读入整个JSON。
 
 MySQL 8 支持 ***JSON Merge Patch*** 格式，通过 `JSON_MERGE_PATCH()` 函数来使用。
