@@ -15,11 +15,11 @@ hasCJKLanguage: true
 languages:
     en:
         languageName: English
-        title: Thinking ...
+        title: Frosted's blog
         weight: 1
         params:
             sidebar:
-                subtitle: Thinking ...
+                subtitle: Waiting for snow
     zh-cn:
         languageName: 中文
         title: 薛玉寒の博客
@@ -49,7 +49,7 @@ params:
         - post
     featuredImageField: image
     rssFullContent: true
-    favicon: /favicon-16x16.ico # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
+    favicon: /favicon.ico # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
 
     footer:
         since: 2024

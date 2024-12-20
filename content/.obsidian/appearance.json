@@ -1,5 +1,7 @@
 {
   "interfaceFontFamily": "Source Han Serif SC",
   "textFontFamily": "Source Han Sans SC",
-  "monospaceFontFamily": "LigaMonaco Nerd Font"
+  "monospaceFontFamily": "LigaMonaco Nerd Font",
+  "cssTheme": "Blue Topaz",
+  "theme": "obsidian"
 }

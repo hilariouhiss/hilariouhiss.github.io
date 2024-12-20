@@ -1,3 +1,7 @@
 {
-  "promptDelete": false
+  "promptDelete": false,
+  "livePreview": false,
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "./",
+  "newLinkFormat": "relative"
 }
