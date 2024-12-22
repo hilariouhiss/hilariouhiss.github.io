@@ -1,7 +1,7 @@
 {
-  "interfaceFontFamily": "Source Han Serif SC",
+  "interfaceFontFamily": "Sarasa UI SC",
   "textFontFamily": "Source Han Sans SC",
   "monospaceFontFamily": "LigaMonaco Nerd Font",
   "cssTheme": "Blue Topaz",
-  "theme": "obsidian"
+  "theme": "system"
 }

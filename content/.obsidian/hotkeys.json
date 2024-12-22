@@ -64,14 +64,6 @@
       "key": "Backspace"
     }
   ],
-  "editor:table-row-after": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "Enter"
-    }
-  ],
   "editor:open-link-in-new-leaf": [],
   "editor:insert-table": [
     {
@@ -104,6 +96,15 @@
         "Mod"
       ],
       "key": "`"
+    }
+  ],
+  "outline:open-for-current": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "L"
     }
   ]
 }

@@ -7,6 +7,7 @@ categories:
   - MySQL
 description: 内连接，左外连接，右外连接，全外连接，交叉连接，自连接，Union，函数等......
 draft: true
+lastmod: 2024-12-18
 ---
 ## 语句执行顺序
 
