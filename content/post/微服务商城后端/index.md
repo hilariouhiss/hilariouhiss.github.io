@@ -4,7 +4,6 @@ date: 2024-12-21
 slug: microservice-e-commerce-backend
 categories:
   - 开发
-  - 微服务
 description: 通过 SCA 示例、哔哩哔哩、CSDN 和 AI 等各种渠道，个人学习并开发的一个微服务架构电商平台后端
 draft: false
 lastmod: 2024-12-22

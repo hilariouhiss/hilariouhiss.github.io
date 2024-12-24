@@ -1,9 +1,8 @@
 ---
-title: MybatisPlus
+title: MybatisPlus基础
 date: 2024-12-16
-slug: mybatisplus
+slug: mybatisplus-basic
 categories:
-  - 知识
   - MybatisPlus
 description: 学习 MybatisPlus 的记录
 draft: true

@@ -3,7 +3,6 @@ title: MySQL数据类型
 date: 2024-12-12
 slug: mysql-datatype
 categories:
-  - 知识
   - MySQL
 description: 对MySQL 数字类型，日期时间，字符串类型，空间数据类型和 JSON 类型的学习
 lastmod: 2024-12-18

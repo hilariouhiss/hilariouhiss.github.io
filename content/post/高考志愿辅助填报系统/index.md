@@ -4,7 +4,6 @@ date: 2024-12-04
 slug: gaokao-vas
 categories:
   - 开发
-  - 总结
 description: 回顾大三软件工程的课程设计，总结一些当时遇到的问题与解决方案
 draft: false
 lastmod: 2024-12-08

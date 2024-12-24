@@ -1,9 +1,8 @@
 ---
-title: 后端开发面试问题
+title: Java后端开发面试题
 date: 2024-12-08
-slug: general-backend-dev-problems
+slug: java-backend-interview-questions
 categories:
-  - 知识
   - 面试
 description: 对 Java、Spring、MySQL、分布式等面试知识的收集
 draft: false
