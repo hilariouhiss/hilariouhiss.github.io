@@ -3,7 +3,7 @@ title: Java后端开发面试题
 date: 2024-12-08
 slug: java-backend-interview-questions
 categories:
-  - 面试
+  - Java
 description: 对 Java、Spring、MySQL、分布式等面试知识的收集
 draft: false
 lastmod: 2024-12-21

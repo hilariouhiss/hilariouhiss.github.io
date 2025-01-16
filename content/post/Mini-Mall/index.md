@@ -1,74 +1,69 @@
 ---
-title: 微服务商城后端
-date: 2024-12-21
-slug: microservice-e-commerce-backend
+title: Mini-Mall
+date: 2024-12-26
+slug: mini-mall
 categories:
   - 开发
-description: 通过 SCA 示例、哔哩哔哩、CSDN 和 AI 等各种渠道，个人学习并开发的一个微服务架构电商平台后端
-draft: false
-lastmod: 2024-12-22
+description: 微服务架构的Mini-Mall商城后端系统
+draft: true
+lastmod: 2025-01-07
 ---
-## 项目架构
+## 业务流程分析
 
-设计并实现了一个基于 Spring Cloud 微服务架构的电商平台后台系统，支持高并发、高可用，具备商品管理、订单处理、用户管理等核心功能。
+![系统核心业务流程](System-Core-Processes.png)
 
-### 技术栈
+## 服务划分
+
+1. 网关服务
+	1. 统一分发请求
+	2. 统一认证鉴权
+	3. 负载均衡
+2. 用户服务
+	1. 用户管理，增删查改
+	2. 角色管理
+	3. 权限管理
+	4. 发送用户操作日志
+3. 商铺服务
+	1. 商铺管理
+4. 商品服务
+	1. 商品管理
+5. 库存服务
+	1. 库存管理
+6. 订单服务
+	1. 订单管理
+7. 支付服务
+	1. 提供支付接口
+8. 日志服务
+	1. 统一记录日志
+	2. ELK
+
+## ER图
+
+![用户，角色，权限，用户信息，地址](ER图1.png)
+
+![商铺，商品](ER图2.png)
+
+## 技术栈
 
 - [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)：实现统一网关，负责路由转发、权限校验和请求过滤。
 - [Nacos](https://nacos.io/)：作为服务注册中心和配置中心，实现服务发现与动态配置管理。
-- [Sa-Token](https://sa-token.cc/index.html)：
+- [Sa-Token](https://sa-token.cc/index.html)：在网关处统一鉴权
 - [Sentinel](https://sentinelguard.io/)：提供熔断、限流与降级功能，保障系统在高并发场景下的稳定性。
 - [Seata](https://seata.apache.org/)：集成分布式事务管理，确保跨服务事务的一致性（如订单支付与库存扣减）。
 - [RocketMQ](https://rocketmq.apache.org/)：通过消息队列实现异步处理和削峰填谷（如订单状态更新与库存同步）。
 - [Docker](https://www.docker.com/)：对微服务进行容器化部署，提升环境一致性和快速扩展能力。
 - [ElasticSearch](https://www.elastic.co/)：提高数据搜索能力，包括日志查询、商品查询、订单查询等。
+- [Springfox]()：生成 API 文档，方便测试与编写文档
 
-![系统架构图](sys-structure.png)
-
-### 功能模块
-
-- 网关服务（Spring Cloud Gateway + Nacos）
-	- [ ] 动态路由：SCG 监听 Nacos 实现动态路由，每当有新的微服务注册到 Nacos 或者现有服务的实例发生变化时，网关能够自动更新其路由表，无需重启服务。
-	- [ ] 身份认证：使用 Sa-Token 在网关处同一进行身份认证，确保只有授权用户可以访问特定资源。
-	- [ ] 限流与熔断：结合 Sentinel 实现对请求的限流和熔断策略，防止系统过载。
-	- [ ] 日志记录：记录所有通过网关的请求信息，便于后续分析和排查问题。
-	- [ ] 跨域支持：配置 CORS 政策，使得前端应用可以从不同的域名调用后端 API。
-- 用户服务：
-	- [ ] 用户管理：包括用户注册、登录、登出、个人信息维护等功能。
-	- [ ] 权限管理：实现基于角色的访问控制（RBAC），定义不同角色的权限范围。
-	- [ ] 操作记录：收集用户浏览购买等操作信息，便于后续分析
-- 商品服务：
-	- [ ] 商品管理：支持商品的增删改查操作，包括商品分类、品牌、属性等多条件检索。
-	- [ ] 库存管理：实时监控商品库存，支持库存预警机制。
-	- [ ] 商品搜索：利用 ElasticSearch 实现高效的商品搜索和过滤功能。
-	- [ ] 商品评价：允许用户对已购商品进行评价和打分，提升用户体验。
-- 订单服务：
-	- [ ] 订单管理：支持商品的增删改查操作，包括订单日期、发起用户、是否完成等多种检索条件。
-	- [ ] 生命周期：管理订单的创建、修改、取消、发货、完成等多方面信息
-- 日志服务：
-	- [ ] 集中式日志管理：采用 Elasticsearch 实现日志的集中收集、存储、查询和可视化。
-- 支付服务：
-	- [ ] 积分支付：为用户提供积分支付的方式购买商品，模拟支付场景。
-	- [ ] 支付接口：集成支付宝、微信、云闪付等支付接口。
-
-### 项目亮点
-
-- **高并发支持**：基于限流、消息队列和负载均衡设计，成功支撑每日百万级请求。
-- **高可用设计**：通过动态服务注册发现、熔断限流与分布式事务确保系统可靠性。
-- **容器化部署**：通过 Docker 简化微服务部署流程，提高上线效率。
-
-
-## 项目配置
+## 项目开发
 
 ### 依赖版本
 
-从 [版本发布说明-Spring Cloud Alibaba](https://sca.aliyun.com/docs/2023/overview/version-explain/?spm=5176.29160081.0.0.74805c72PaDKHn) 可知 Spring  Cloud Alibaba（SCA）与其他组件对应的版本，如图所示：
+从 [版本发布说明-Spring Cloud Alibaba](https://sca.aliyun.com/docs/2023/overview/version-explain/?spm=5176.29160081.0.0.74805c72PaDKHn) 可知 Spring  Cloud Alibaba（SCA）与其他组件对应的版本
 
-![Spring Cloud Alibaba 版本说明](spring_cloud_alibaba.png)
+在项目 pom.xml 文件中引入某版本的 SCA，随后 `Ctrl + 右键` 查看它定义的依赖版本。
 
-也可在项目 pom.xml 文件中引入某版本的 SCA，随后 `Ctrl + 右键` 查看它定义的依赖版本。
-
-官网和 Github 上的文档更新有一定的滞后性，若需使用最新稳定版本的 SCA，请用第二种方法查看各组件版本。
+> 官网和 Github 上的文档更新有一定的滞后性，若需使用最新稳定版本的 SCA，请用第二种方法查看各组件版本。
 
 我这里因为事先已将 Nacos.2.4.2 配置完毕，所以选用了最新的 SCA.2023.0.3.2
 
@@ -98,7 +93,7 @@ lastmod: 2024-12-22
     <modules>  
         <module>commons</module>
         <!--...--> 
-        <module>user-service</module>
+        <module>user</module>
     </modules>  
     
 	<!--将依赖的版本号定义为属性，方便统一查看管理--> 
@@ -155,46 +150,93 @@ lastmod: 2024-12-22
 </project>
 ```
 
-#### Commons
+#### 插件
 
-作用：存储公用的实体类、工具类，引入公用的依赖
+##### flatten-maven-plugin
 
-1. 删除启动类和 application.properties 配置文件，否则会覆盖引入了 commons 的其他模块的配置
-2. 在 pom.xml 文件声明父项目，引入公用的依赖，示例如下：
+对CI/CD友好，去除<parent>，使每个子模块版本明确
+
+常见配置：
+
+父项目 pom.xml
 
 ```xml
 ...
-<modelVersion>4.0.0</modelVersion>  
-<parent>  
-    <groupId>me.lhy</groupId>  
-    <artifactId>malling</artifactId>
-    <version>0.0.1-SNAPSHOT</version>  
-</parent>
+<groupId>...</groupId>  
+<artifactId>...</artifactId>  
+<version>${revision}</version>  
+<packaging>pom</packaging>
+...
 
+<properties>
+	...
+	<revision>1.0.0</revision>
+	...
+</properties>
+
+...
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>1.2.7</version> <!-- 请根据实际情况选择版本 -->
+            <configuration>
+                <updatePomFile>true</updatePomFile> <!-- 是否更新原始 pom.xml 文件 -->
+                <flattenMode>resolveCiFriendliesOnly</flattenMode> <!-- 可选模式 -->
+            </configuration>
+            <executions>
+                <execution>
+                    <id>flatten</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>flatten</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>flatten.clean</id>
+                    <phase>clean</phase>
+                    <goals>
+                        <goal>clean</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 ```
 
+在这个配置中，`flatten-maven-plugin` 被绑定到了 `package` 和 `clean` 生命周期阶段，这意味着它会在打包过程中自动执行平坦化操作，并且在清理项目时也会清理掉平坦化的 `pom.xml` 文件。
 
-#### Gateway-Service
+子模块 pom.xml：
 
+```xml
+...
+<parent>  
+    <groupId>...</groupId>  
+    <artifactId>...</artifactId>  
+    <version>${revision}</version>  
+    <relativePath>../../pom.xml</relativePath>  
+</parent>
+...
+```
 
+##### maven-compiler-plugin
 
-#### Log-Service
+若spring版本较高使用时需配置如下，否则请求路径会被解析为静态资源
 
+```xml
+<plugin>  
+    <groupId>org.apache.maven.plugins</groupId>  
+    <artifactId>maven-compiler-plugin</artifactId>  
+    <configuration>  
+        <parameters>true</parameters>  
+    </configuration>  
+</plugin>
+```
 
-
-#### Payment-Service
-
-
-
-#### Product-Service
-
-
-
-#### User-Service
-
-
-
-### 配置 Nacos
+#### 配置 Nacos
 
 据 [单机模式部署 | Nacos 官网](https://nacos.io/docs/latest/manual/admin/deployment/deployment-standalone/?spm=5238cd80.2ef5001f.0.0.3f613b7cS62ZDw) 文档所述，执行以下步骤：
 
@@ -223,6 +265,69 @@ spring:
 `Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed`
 
 这是由于 MySQL 8 默认使用 `caching_sha2_password` 身份验证插件，但客户端默认不允许公钥检索，在 application.properties 的数据库连接串后加上 `&allowPublicKeyRetrieval=true` 即可。
+
+#### 公共模块（commons）
+
+作用：存储公用的实体类、工具类、异常和异常处理，引入公用的依赖
+
+1. 删除启动类和 application.properties 配置文件，否则会覆盖引入了 commons 的其他模块的配置
+2. 在 pom.xml 文件声明父项目，并引入公用的依赖
+
+> 注意：scope 为 test、provided 和 system 等，则 commons 中的依赖不会传递给引入它的模块
+
+#### 网关服务
+
+要求功能：
+
+- [x] 请求转发，负载均衡
+- [x] 请求统一鉴权
+- [] 整合各个service的接口文档
+
+#### 用户服务
+
+##### 用户登录
+
+- [x] 用户名密码登录x
+- [] 手机号密码登录
+
+##### 新增用户
+
+- [x] 使用用户名和密码注册
+- [ ] 使用手机号注册
+
+##### 删除用户
+
+- [x] 据 ID 逻辑删除
+- [x] 据 Username 逻辑删除
+- [] 据 ID 物理删除过期用户：过期待定义
+
+##### 查询用户
+
+- [] 分页查询所有未被删除用户
+- [] 分页查询被删除用户
+- [x] 据 ID 查询 user
+- [x] 据 Username 查询 user
+- [x] 据 phoneNumber 查询 user
+- [] 据 ID 查询 userInfo
+
+##### 修改用户信息
+
+- [] userInfo更改：地址薄、性别
+- [] 用户密码更改
+
+#### 商铺服务
+
+#### 商品服务
+
+#### 库存服务
+
+#### 订单服务
+
+#### 支付服务
+
+#### 日志服务
+
+
 
 ### 配置 OpenFeign
 

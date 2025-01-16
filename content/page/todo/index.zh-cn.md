@@ -9,8 +9,12 @@ menu:
         params:
             icon: date
 ---
-
-- [ ] 学习并完成一个分布式项目的开发
-- [ ] 学习 Java 并发编程基础
-- [ ] 学习测试框架 *Locust* 的基本用法
+- [ ] Java 锁、并发
+- [ ] Java 集合类
+- [ ] Java 反射
+- [ ] Java IO
+- [ ] Spring 常用注解
+- [ ] 高考项目相关，Security，Redis，MySQL，Spring Cache
+- [ ] Malling 相关，Spring Cloud Alibaba 系列组件
+- [ ] 一个轮子项目
 - [x] 学习 *MySQL* 常用数据类型
