@@ -1,5 +1,5 @@
 ---
-title: MybatisPlus基础
+title: MybatisPlus 基础
 date: 2024-12-16
 slug: mybatisplus-basic
 categories:
@@ -152,4 +152,47 @@ MybatisPlus 支持基于 yaml 文件的自定义配置，一般用于设置一�
 参考：[使用配置 | MyBatis-Plus](https://baomidou.com/reference/)
 
 ## 常用功能
+
+### 单表查询
+
+使用 Mybatis-Plus 提供的 Wrapper 机制进行方便的单表查询
+
+### 查询数据分页
+
+逻辑分页：将所有数据读入内存中，然后进行分页
+
+物理分页：使用数据库提供分页机制进行分页
+
+#### 使用 Mybatis 提供的 RowBounds 进行分页
+
+以下是一个简单示例：
+
+```
+// UserService
+List<User> userList = userMapper.selectAll(new RowBounds(0,10));
+
+// UserMapper
+public List<User> selectAll(RowBounds rowBounds);
+
+// UserMapper.xml
+<select id="selectAll">
+     select * from user where id>0
+ </select>
+```
+
+但 RowBounds 是将所有符合条件的数据全都查询到内存中，然后在内存中对数据进行分页，若数据量极大，则容易造成内存占用过大或直接OOM。
+
+当然，JDBC 也会做一些优化，不会一次性将所有数据加载，而是先加载一部分，后续再根据需求去请求数据库，但可能会造成频繁访问数据库，给数据库造成较大的压力。
+
+#### 使用分页插件
+
+无论是常用的 Pagehelper 还是 Mybatis-Plus 自带的分页插件，都是基于 Mybatis 提供的 Interceptor 机制运行。
+
+Interceptor 拦截需要分页的 select 语句，然后根据参数去动态地拼接 SQL，从而实现分页。
+
+好处：提供统一的分页处理机制，分页功能完成封装后，其他人可拿来即用，无需维护或关心实现原理。
+
+#### 手动实现
+
+在 xml 文件中手动编写分页 SQL，例如，使用 MySQL 提供的分页关键字 Limit 去实现分页。
 

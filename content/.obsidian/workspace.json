@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "1dc229af4f9281d0",
+        "id": "d726ce354f1b13ad",
         "type": "tabs",
         "children": [
           {
-            "id": "aa4ba5aab3fd7257",
+            "id": "b1cc0e04dc364150",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/Mini-Mall/index.md",
+                "file": "post/MySQL锁机制/index.md",
                 "mode": "source",
                 "source": false
               },
@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -79,14 +80,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "post/Mini-Mall/index.md"
+                "file": "post/MySQL锁机制/index.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-list",
               "title": "index 的大纲"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -164,18 +167,26 @@
       "workspaces:管理工作区布局": false
     }
   },
-  "active": "aa4ba5aab3fd7257",
+  "active": "cfc6a4635740d5bf",
   "lastOpenFiles": [
-    "post/开发笔记/index.md",
     "post/Mini-Mall/index.md",
-    "post/开发笔记",
+    "post/MySQL锁机制/index.md",
+    "post/MySQL锁机制",
+    "post/MySQL查询/index.md",
+    "post/后端参数校验/index.md",
     "post/MybatisPlus/index.md",
+    "post/Nginx/index.md",
     "post/Redis/index.md",
+    "post/安卓开发基础/index.md",
+    "post/安卓开发基础",
+    "post/模块接口设计/index.md",
+    "post/开发笔记/index.md",
+    "post/模块接口设计",
+    "post/开发笔记",
     "post/Redis/Redis常用数据类型.png",
     "post/MybatisPlus/UserMapper-Output-1.png",
     "post/Redis",
     "post/苍穹外卖/index.md",
-    "post/Nginx/index.md",
     "post/Nginx",
     "post/苍穹外卖",
     "post/微服务商城后端/index.md",
@@ -193,24 +204,15 @@
     "page/todo/index.zh-cn.md",
     "page/todo/index.en.md",
     "post/Spring Security原理/index.md",
-    "post/后端参数校验/index.md",
     "post/MySQL数据类型/index.md",
     "post/Java并发编程/index.md",
     "post/Java常用核心类与集合类/index.md",
     "post/Java后端开发面试/index.md",
-    "post/Spring Security原理",
     "post/高考志愿辅助填报系统/index.md",
-    "post/MySQL查询/index.md",
     "post/单体拆分微服务/index.md",
-    "post/Java常用核心类与集合类",
     "Pasted.md",
     "post/微服务商城后端/Pasted image 20241222162427.png",
     "().md",
-    "Template/post.md",
-    "post/后端参数校验",
-    "page/archives/index.zh-cn.md",
-    "page/search/index.zh-cn.md",
-    "page/about/index.zh-cn.md",
-    "_index.en.md"
+    "Template/post.md"
   ]
 }
