@@ -289,26 +289,222 @@ public class Counter {
 
 ### 4.1 并发集合
 
-- ConcurrentHashMap
-  - JDK 7 使用分段锁机制，JDK 8 采用 CAS + synchronized（数组+链表+红黑树）实现，线程安全且具有较高的并发性。
-- CopyOnWriteArrayList / CopyOnWriteArraySet
-  - 写操作时复制数组，读操作无锁，适合读多写少的场景；
-- ConcurrentLinkedQueue
-  - 基于无锁CAS设计的队列，适用于高并发场景下的非阻塞队列。
+- **ConcurrentHashMap**：JDK 7 使用分段锁机制，JDK 8 采用 CAS + synchronized（数组+链表+红黑树）实现，线程安全且具有较高的并发性。
+- **CopyOnWriteArrayList** / **CopyOnWriteArraySet**：写操作时复制数组，读操作无锁，适合读多写少的场景；
+- **ConcurrentLinkedQueue**：基于无锁CAS设计的队列，适用于高并发场景下的非阻塞队列。
+- **BlockingDeque**：支持双端操作的阻塞队列。
 
 ### 4.2 J.U.C 同步工具
 
-- **CountDownLatch**：用于使一个线程等待一组其他线程完成任务。
-- **CyclicBarrier**：允许一组线程互相等待直到到达公共屏障点，且可重复使用。
-- **Semaphore**：通过维护许可的计数，控制对某一资源的并发访问。
-- **Phaser**：更灵活的同步工具，支持动态调整参与者数量。
+#### 4.2.1 ReentrantLock
+##### 用法
+`ReentrantLock` 是一种显式锁，相对于 `synchronized` 关键字，它提供了更多的灵活性（例如可中断锁请求、公平锁等）。基本用法如下：
+```java
+public class Counter {
+    private int count = 0;
+    private final ReentrantLock lock = new ReentrantLock();
+
+    public void increment() {
+        lock.lock();
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+```
+
+##### 原理
+- **重入性**：同一线程可以多次获得锁而不会死锁。
+- **公平性**：可以通过构造函数指定是否采用公平策略，使等待时间最长的线程优先获得锁。
+- **可中断性**：调用 `lockInterruptibly()` 方法时，如果线程在等待锁过程中被中断，可以抛出 `InterruptedException`。
+
+#### 4.2.2 CountDownLatch
+##### 用法
+`CountDownLatch` 用于使一个或多个线程等待其他线程完成一组操作。常用于主线程等待多个子线程执行完毕。
+```java
+public class WorkerDemo {
+    public static void main(String[] args) throws InterruptedException {
+        int workerCount = 3;
+        CountDownLatch latch = new CountDownLatch(workerCount);
+
+        for (int i = 0; i < workerCount; i++) {
+            new Thread(() -> {
+                // 模拟任务处理
+                System.out.println("任务开始：" + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("任务结束：" + Thread.currentThread().getName());
+                latch.countDown();
+            }).start();
+        }
+
+        // 等待所有线程完成任务
+        latch.await();
+        System.out.println("所有任务已完成！");
+    }
+}
+```
+##### 原理
+- 内部维护一个计数器，每调用一次 `countDown()`，计数器减一；
+- 当计数器归零时，所有等待的线程将被唤醒继续执行。
+- 适合用于一次性任务的同步，不可重用。
+
+#### 4.2.3 CyclicBarrier
+##### 用法
+`CyclicBarrier` 用于让一组线程互相等待，直到所有线程都到达某个公共屏障点后再继续执行。常见应用包括多线程并行计算，最后结果汇总：
+```java
+public class BarrierDemo {
+    public static void main(String[] args) {
+        int threadCount = 3;
+        CyclicBarrier barrier = new CyclicBarrier(threadCount, () -> {
+            System.out.println("所有线程已到达屏障，开始执行汇总任务");
+        });
+
+        for (int i = 0; i < threadCount; i++) {
+            new Thread(() -> {
+                System.out.println("线程" + Thread.currentThread().getName() + "正在执行任务");
+                try {
+                    Thread.sleep((long) (Math.random() * 1000));
+                    System.out.println("线程" + Thread.currentThread().getName() + "等待中...");
+                    barrier.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    }
+}
+
+```
+
+##### 原理
+- 内部计数器记录等待的线程数；
+- 当所有线程都调用了 `await()` 方法时，计数器归零，并触发预设的屏障动作（如果有）；
+- 屏障在使用完毕后可以重用（即“循环”屏障）。
+
+#### 4.2.4 Semaphore
+`Semaphore` 用于控制同时访问特定资源的线程数量，相当于一个计数信号量。典型用法如限制并发访问数据库连接池或共享设备：
+```java
+public class SemaphoreDemo {
+    // 假设只许可三个
+    private final Semaphore semaphore = new Semaphore(3);
+
+    public void accessResource() {
+        try {
+            semaphore.acquire();
+            System.out.println(Thread.currentThread().getName() + " 获取许可，正在访问资源");
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        } finally {
+            System.out.println(Thread.currentThread().getName() + " 释放许可");
+            semaphore.release();
+        }
+    }
+
+    public static void main(String[] args) {
+        SemaphoreDemo demo = new SemaphoreDemo();
+        for (int i = 0; i < 6; i++) {
+            new Thread(demo::accessResource).start();
+        }
+    }
+}
+```
+##### 原理
+
+- 内部维护一个许可计数器；
+- `acquire()` 操作会减少许可数，若许可数为0，则线程进入等待状态；
+- `release()` 操作会增加许可数，并唤醒等待线程。
+- 适用于资源访问限制和流量控制等场景。
+
+#### 4.2.5 BlockingQueue
+
+##### 用法
+
+`BlockingQueue` 是一种支持阻塞操作的队列，广泛应用于生产者-消费者模型。常见实现包括 `ArrayBlockingQueue`、`LinkedBlockingQueue`、`PriorityBlockingQueue` 等。
+
+```java
+public class BlockingQueueDemo {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(5);
+
+        // 生产者线程
+        new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    queue.put(i);  // 队列满时阻塞
+                    System.out.println("生产了：" + i);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }).start();
+
+        // 消费者线程
+        new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    int num = queue.take();  // 队列空时阻塞
+                    System.out.println("消费了：" + num);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }).start();
+    }
+}
+
+```
+
+##### 原理
+
+- 内部通过锁与条件变量实现阻塞与唤醒机制；
+- 当队列为空时，调用 `take()` 的线程会被阻塞，直到队列中有数据；
+- 当队列满时，调用 `put()` 的线程会被阻塞，直到有空间可用；
+- 保证了生产者和消费者之间的协调与数据安全。
+
 
 ### 4.3 Future 和线程池
 
+
+#### 4.3.1 Executor 和 ExecutorService
+提供了基于线程池管理任务执行的框架，避免频繁创建销毁线程的开销。
+##### 用法
+Executor 框架主要用于线程池管理，避免频繁创建销毁线程带来的开销。最常用的是 `ThreadPoolExecutor` 以及通过 `Executors` 工具类创建的各种线程池（如固定线程池、缓存线程池、单线程池等）。
+```java
+public class ExecutorDemo {
+    public static void main(String[] args) {
+        // 新建一个固定线程池
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        for (int i = 0; i < 10; i++) {
+            executor.execute(() -> {
+                System.out.println("任务执行：" + Thread.currentThread().getName());
+            });
+        }
+        // 关闭线程池
+        executor.shutdown();
+    }
+}
+
+```
+##### 原理
+- **任务队列**：提交的任务会先放入阻塞队列中；
+- **线程复用**：线程池中的线程不断从队列中取任务执行，任务执行完后线程不会销毁，而是等待下一个任务；
+- **扩展策略**：可以配置核心线程数、最大线程数、空闲线程存活时间等参数，从而控制资源使用与任务处理效率。
+
+#### 4.3.2 其他
 - **Future、Callable、FutureTask**
   - 用于提交可返回值的任务，支持任务取消、阻塞获取任务结果等。
-- **Executor 和 ExecutorService**
-  - 提供了基于线程池管理任务执行的框架，避免频繁创建销毁线程的开销。
 - **ThreadPoolExecutor**
   - 核心线程池实现，包含核心线程数、最大线程数、任务队列、拒绝策略等参数；
 - **ScheduledExecutorService**

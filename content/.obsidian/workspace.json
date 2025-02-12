@@ -15,7 +15,7 @@
               "state": {
                 "file": "post/Java并发编程/index.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "index"
@@ -190,7 +190,7 @@
       "workspaces:管理工作区布局": false
     }
   },
-  "active": "13a74cfce29dc923",
+  "active": "5708e3c609573c23",
   "lastOpenFiles": [
     "post/MySQL锁机制/index.md",
     "post/Mini-Mall/index.md",
