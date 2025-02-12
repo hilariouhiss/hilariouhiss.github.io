@@ -32,3 +32,4 @@ assets/jsconfig.json
 .DS_Store
 
 # Local files
+/content/.obsidian

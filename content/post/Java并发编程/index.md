@@ -169,8 +169,6 @@ new Thread(() -> System.out.println("匿名线程2启动...")).start();
 3. 主内存与工作内存
 	 所有共享变量存放在主内存中，线程各自有自己的工作内存，读写共享变量时必须进行主内存与工作内存之间的交互。
 
-------
-
 ## 3. 并发控制机制
 
 ### 3.1 基于锁的并发控制
@@ -283,7 +281,6 @@ public class Counter {
 - **java.util.concurrent.atomic 包**
   - 提供 `AtomicInteger`、`AtomicLong`、`AtomicReference` 等类，用于实现简单数据类型和引用的原子操作；
   - 当线程争用激烈时，CAS 的自旋可能导致较高的 CPU 消耗，这时可以考虑 LongAdder 等更适合高并发计数的方案。
-------
 
 ## 4. 并发容器与工具类
 
