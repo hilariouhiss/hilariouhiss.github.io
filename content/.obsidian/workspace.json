@@ -8,18 +8,40 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b1cc0e04dc364150",
+            "id": "5708e3c609573c23",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/MySQL锁机制/index.md",
+                "file": "post/Java并发编程/index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "index"
-            }
+            },
+            "group": "7587d3a09e3b7773"
+          }
+        ]
+      },
+      {
+        "id": "e1c47fa3f5d45cfd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "13a74cfce29dc923",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "post/Java并发编程/index.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            },
+            "group": "7587d3a09e3b7773"
           }
         ]
       }
@@ -80,7 +102,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "post/MySQL锁机制/index.md",
+                "file": "post/Java并发编程/index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -89,7 +111,8 @@
               "title": "index 的大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -167,10 +190,10 @@
       "workspaces:管理工作区布局": false
     }
   },
-  "active": "cfc6a4635740d5bf",
+  "active": "13a74cfce29dc923",
   "lastOpenFiles": [
-    "post/Mini-Mall/index.md",
     "post/MySQL锁机制/index.md",
+    "post/Mini-Mall/index.md",
     "post/MySQL锁机制",
     "post/MySQL查询/index.md",
     "post/后端参数校验/index.md",
