@@ -6,6 +6,8 @@
 # Folders
 _obj
 _test
+/content/.obsidian/
+/content/Template/
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -30,5 +32,3 @@ assets/jsconfig.json
 .DS_Store
 
 # Local files
-/content/.obsidian
-/content/Template
