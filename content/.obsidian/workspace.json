@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/Java并发编程/index.md",
+                "file": "post/Mini-Mall/index.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "index"
@@ -34,7 +34,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/Java并发编程/index.md",
+                "file": "post/Mini-Mall/index.md",
                 "mode": "preview",
                 "source": false
               },
@@ -102,7 +102,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "post/Java并发编程/index.md",
+                "file": "post/Mini-Mall/index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -111,8 +111,7 @@
               "title": "index 的大纲"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -192,6 +191,9 @@
   },
   "active": "5708e3c609573c23",
   "lastOpenFiles": [
+    "post/Spring事务/index.md",
+    "post/Java并发编程/index.md",
+    "post/Spring事务",
     "post/MySQL锁机制/index.md",
     "post/Mini-Mall/index.md",
     "post/MySQL锁机制",
@@ -223,12 +225,10 @@
     "post/Mini-Mall/ER图1.png",
     "post/Mini-Mall/System-Core-Processes.png",
     "post/Mini-Mall/38a876ec-1702-45ad-b7b2-4d4307b448c0.png",
-    "post/Mini-Mall",
     "page/todo/index.zh-cn.md",
     "page/todo/index.en.md",
     "post/Spring Security原理/index.md",
     "post/MySQL数据类型/index.md",
-    "post/Java并发编程/index.md",
     "post/Java常用核心类与集合类/index.md",
     "post/Java后端开发面试/index.md",
     "post/高考志愿辅助填报系统/index.md",

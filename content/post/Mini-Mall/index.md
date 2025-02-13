@@ -1,12 +1,12 @@
 ---
-title: Mini-Mall
+title: Mini-Mall简易电商后端
 date: 2024-12-26
 slug: mini-mall
 categories:
   - 开发
-description: 微服务架构的Mini-Mall商城后端系统
-draft: true
-lastmod: 2025-01-07
+description: 为学习微服务架构而开发的 Mini-Mall 商城后端系统
+draft: false
+lastmod: 2025-02-13
 ---
 ## 业务流程分析
 
@@ -303,8 +303,8 @@ spring:
 
 ##### 查询用户
 
-- [] 分页查询所有未被删除用户
-- [] 分页查询被删除用户
+- [ ] 分页查询所有未被删除用户
+- [ ] 分页查询被删除用户
 - [x] 据 ID 查询 user
 - [x] 据 Username 查询 user
 - [x] 据 phoneNumber 查询 user
@@ -319,11 +319,7 @@ spring:
 
 #### 商品服务
 
-#### 库存服务
-
 #### 订单服务
-
-#### 支付服务
 
 #### 日志服务
 
@@ -335,7 +331,7 @@ spring:
 2. 在模块启动类上添加 `@EnableFeignClients`
 3. 使用如下：
 ```java
-@FeignClient(name = "receive-service",path = "/receive")
+@FeignClient(name = "receive-service", path = "/receive")
 public interface SendService{
 
 	@RequestMapping("/test")
