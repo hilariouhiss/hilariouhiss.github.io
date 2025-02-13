@@ -469,11 +469,42 @@ public class BlockingQueueDemo {
 - 当队列满时，调用 `put()` 的线程会被阻塞，直到有空间可用；
 - 保证了生产者和消费者之间的协调与数据安全。
 
-
 ### 4.3 Future 和线程池
 
+#### 4.3.1 ThreadPoolExecutor
 
-#### 4.3.1 Executor 和 ExecutorService
+J.U.C 包中最常用的线程池实现，通过复用线程来降低线程创建和销毁的开销，提高响应速度，并通过统一管理线程来更好地控制并发任务的执行
+
+##### 核心构造参数
+
+创建 ThreadPoolExecutor 时，通常需要设置以下六个主要参数：
+
+1. **corePoolSize**：核心线程数，线程池中始终保持运行的线程数量。任务被提交至线程池中时，若当前线程数小于该值，就直接创建新线程执行任务
+2. **maximumPoolSize**：线程池允许的最大线程数。当任务队列已满，但当前线程数还未达到这个值，则还会继续创建新的线程
+3. **keepAliveTime**：非核心线程空闲存活的时间，超过这个时间且无任务可取时，线程将被终止。如果调用了 allowCoreThreadTimeOut(true)，核心线程也会遵循该策略
+4. **workQueue**：任务队列，用于存放等待执行的任务。常见的有 ArrayBlockingQueue（有界队列）、LinkedBlockingQueue（可选有界或无界）、SynchronousQueue（不存储任务）等
+5. **threadFactory**：用于创建新线程，通常可以使用默认的线程工厂，也可自定义以设置线程名称、优先级等
+6. **handler**：拒绝策略，当任务队列满且线程池中线程数达到 maximumPoolSize时，决定如何处理新提交的任务。常用策略包括 AbortPolicy、CallerRunsPolicy、DiscardPolicy 和 DiscardOldestPolicy
+
+##### 线程池的执行流程
+
+ThreadPoolExecutor 提交任务的整体流程可以概括为三个步骤：
+
+1. **先创建核心线程**
+   当提交任务时，如果当前运行的线程数小于 corePoolSize，线程池会立即创建新线程来执行任务
+2. **任务入队**
+   当核心线程数达到 corePoolSize 时，新的任务将首先被放入 workQueue 队列中等待执行。此时队列通常是阻塞队列，例如无界的 LinkedBlockingQueue（FixedThreadPool 和 SingleThreadExecutor 默认采用）
+3. **扩容与拒绝**
+   如果队列已满，则线程池会尝试创建新的线程（前提是当前线程数还小于 maximumPoolSize）。若线程数已达 maximumPoolSize 并且任务依然无法入队，则触发拒绝策略，按照预设的 handler 对任务进行处理，如抛出异常或让调用者执行任务
+
+##### 使用注意与最佳实践
+
+1. **参数配置**：合理设置 corePoolSize、maximumPoolSize、keepAliveTime 以及队列大小，对系统性能至关重要。比如 CPU 密集型任务建议线程数设置为 CPU 核数+1，而 IO 密集型任务可以适当调大线程数
+2. **避免使用 Executors 工具类**：虽然 Executors 提供了简便的方法创建线程池，但其默认的线程池实现（如 newFixedThreadPool、newCachedThreadPool）存在使用无界队列或无限制线程数的问题，容易导致资源耗尽。建议直接使用 ThreadPoolExecutor 构造函数进行精细控制
+3. **监控与调优**：可以通过覆盖 beforeExecute()、afterExecute() 方法和定期监控线程池状态，及时调整线程池参数，确保系统稳定运行。
+
+
+#### 4.3.2 Executor 和 ExecutorService
 提供了基于线程池管理任务执行的框架，避免频繁创建销毁线程的开销。
 ##### 用法
 Executor 框架主要用于线程池管理，避免频繁创建销毁线程带来的开销。最常用的是 `ThreadPoolExecutor` 以及通过 `Executors` 工具类创建的各种线程池（如固定线程池、缓存线程池、单线程池等）。
@@ -499,12 +530,8 @@ public class ExecutorDemo {
 - **线程复用**：线程池中的线程不断从队列中取任务执行，任务执行完后线程不会销毁，而是等待下一个任务；
 - **扩展策略**：可以配置核心线程数、最大线程数、空闲线程存活时间等参数，从而控制资源使用与任务处理效率。
 
-#### 4.3.2 其他
-- **Future、Callable、FutureTask**
-  - 用于提交可返回值的任务，支持任务取消、阻塞获取任务结果等。
-- **ThreadPoolExecutor**
-  - 核心线程池实现，包含核心线程数、最大线程数、任务队列、拒绝策略等参数；
-- **ScheduledExecutorService**
-  - 支持延迟执行和周期性任务调度。
-- **Fork/Join 框架**
-  - 利用分治算法并行执行任务，采用工作窃取策略，是利用多核 CPU 进行并行计算的有效工具。
+#### 4.3.3 其他
+
+- **Future、Callable、FutureTask**：用于提交可返回值的任务，支持任务取消、阻塞获取任务结果等。
+- **ScheduledExecutorService**：支持延迟执行和周期性任务调度。
+- **Fork/Join 框架**：利用分治算法并行执行任务，采用工作窃取策略，是利用多核 CPU 进行并行计算的有效工具。
