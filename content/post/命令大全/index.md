@@ -1,12 +1,12 @@
 ---
-title: 常用命令大全
+title: 常用命令小全
 date: 2025-03-04
 slug: common-commands
 categories:
   - 工具
 description: Linux、Git、Docker等常用的工具的常用命令
 draft: false
-lastmod: 2025/03/11
+lastmod: 2025-03-11
 ---
 ## Linux 常用命令
 
@@ -85,7 +85,7 @@ netstat -tulnp        # 查看监听端口
 
 #### Git 常用命令
 
-##### ​仓库与提交
+##### 仓库与提交
 
 - **`init`/`clone`**：初始化/克隆仓库
 ```bash
@@ -138,7 +138,7 @@ git remote -v         # 查看远程仓库
 git fetch upstream   # 获取上游仓库更新
 ```
 
-##### ​撤销与修复
+##### 撤销与修复
 
 - **`reset`/`revert`**：版本回退
 ```bash
@@ -188,7 +188,7 @@ docker exec -it mynginx /bin/     # 进入容器终端
 docker logs -f mynginx            # 实时查看日志
 ```
 
-##### ​网络与存储
+##### 网络与存储
 
 - **`network`**：网络配置
 ```bash

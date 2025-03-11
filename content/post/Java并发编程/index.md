@@ -6,7 +6,7 @@ categories:
   - Java
 description: Java并发编程的基础
 draft: false
-lastmod: 2025/03/11
+lastmod: 2025-03-11
 ---
 ##  基础概念
 

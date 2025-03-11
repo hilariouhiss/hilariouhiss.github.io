@@ -6,7 +6,7 @@ categories:
   - Spring
 description: Spring 事务相关知识的总结
 draft: false
-lastmod: 2025/03/11
+lastmod: 2025-03-11
 ---
 ## 事务基本概念与 ACID 特性
 

@@ -6,7 +6,7 @@ categories:
   - mysql
 description: MySQL 锁相关知识总结
 draft: false
-lastmod: 2025/03/11
+lastmod: 2025-03-11
 ---
 为了保证数据的并发访问和事务的隔离性，InnoDB 中的锁机制主要基于行级锁，但也结合了其他多种锁类型。
 
