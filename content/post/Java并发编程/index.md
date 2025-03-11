@@ -6,11 +6,11 @@ categories:
   - Java
 description: Java并发编程的基础
 draft: false
-lastmod: 2025-02-12
+lastmod: 2025/03/11
 ---
-##  1. 基础概念
+##  基础概念
 
-### 1.1 进程、线程与虚拟线程
+### 进程、线程与虚拟线程
 
 **进程**是程序的运行态，磁盘上静态的程序被 OS 加载进内存并分配所需的系统资源，包括如 CPU 时间、IO、堆栈和寄存器状态等一系列环境，这个过程便是在创建一个进程。
 
@@ -169,11 +169,11 @@ new Thread(() -> System.out.println("匿名线程2启动...")).start();
 3. 主内存与工作内存
 	 所有共享变量存放在主内存中，线程各自有自己的工作内存，读写共享变量时必须进行主内存与工作内存之间的交互。
 
-## 3. 并发控制机制
+## 并发控制机制
 
-### 3.1 基于锁的并发控制
+### 基于锁的并发控制
 
-#### 3.1.1 synchronized
+#### synchronized
   - 隐式的对象锁，使用简单、语法简洁、自动释放锁，能保证互斥和可见性；
   - 缺点是功能较弱（如不能中断等待、无法精细控制锁的释放）且在竞争激烈时可能导致性能瓶颈。
   - 锁升级机制：
@@ -186,16 +186,16 @@ new Thread(() -> System.out.println("匿名线程2启动...")).start();
 		- 适用于竞争不激烈时，通过自旋获取锁而避免线程阻塞。但如果竞争依然激烈（例如CAS反复失败），则会升级为重量级锁。
 	4. **重量级锁**：
 		- 当自旋竞争失败或等待时间过长时，轻量级锁会膨胀为重量级锁，此时采用操作系统互斥量来实现阻塞式同步，进入的线程会真正被挂起，直到锁被释放。
-#### 3.1.2 Lock 接口及其实现
+#### Lock 接口及其实现
   - 最常用的实现，`ReentrantLock`：支持可重入（同一线程可多次获得同一锁）、中断响应（lockInterruptibly()）、尝试获取锁（tryLock()，可设置超时）以及公平/非公平两种策略；
   - `ReentrantReadWriteLock`：提供一对相关的锁，**读锁**允许多个线程同时读，但当有线程获得**写锁**时，读锁请求会被阻塞，此时写操作独占，可提高读多写少场景的并发性能；
-#### 3.1.3 StampedLock
+#### StampedLock
   - Java8 引入，相对于 ReentrantReadWriteLock 提供更细粒度的控制，它支持三种模式：写锁、悲观读锁以及乐观读锁，提高读操作效率（但使用上较为复杂）；
   - 虽然 StampedLock 并不直接实现 Lock 接口，但它提供了一套类似于 Lock 的 API，用于实现高效的读写控制和乐观锁定；
 4. **两阶段锁协议（2PL）**
   - 事务在执行时先进入扩展阶段（不断申请锁）再进入收缩阶段（释放锁），确保调度与某个串行执行等价；
   - 严格2PL要求写锁直到事务结束才释放，以防止脏读。
-#### 3.1.4 Lock 与 synchronized 的区别
+#### Lock 与 synchronized 的区别
 1. **使用方式与灵活性**
     - **synchronized**
         - 是 Java 语言内置的关键字，使用简单（通过修饰方法或代码块实现同步），并且在异常发生时自动释放锁。
@@ -213,8 +213,8 @@ new Thread(() -> System.out.println("匿名线程2启动...")).start();
     - 早期版本中 synchronized 的性能较低，但随着 JVM 的优化（如偏向锁、轻量级锁）在 JDK 6 以后，其性能已大为提升。
     - Lock 提供了更多扩展和控制能力，特别在高并发场景下，当需要复杂的锁调度和条件控制时，Lock（及其 Condition）可以提供更好的解决方案。
 
-### 3.2 Synchronized 的使用
-#### 3.2.1 同步实例方法
+### Synchronized 的使用
+#### 同步实例方法
 在类的实例方法上直接加上 **synchronized** 修饰符，相当于对当前对象（this）加锁，这样，同一时刻只有一个线程可以执行该方法，其他线程必须等待锁释放后才能进入。
 ```java
 public class Counter {
@@ -233,7 +233,7 @@ public class Counter {
 
 > 在这种方式下，如果多个线程对同一个对象调用 `increment()` 方法，只有获得锁的线程能够执行，其他线程需要等待，从而确保对共享变量 `count` 的操作是线程安全的。
 
-#### 3.2.2 同步静态方法
+#### 同步静态方法
 当使用 **synchronized** 修饰静态方法时，锁定的是该类的 **Class 对象**，这意味着对该类的所有实例而言，同一时刻只有一个线程可以执行该静态同步方法。
 
 ```java
@@ -253,7 +253,7 @@ public class SharedCounter {
 
 > 这种方式确保了即使创建了多个对象实例，静态方法的调用也能保持线程安全。
 
-#### 3.2.2 同步代码块
+#### 同步代码块
 使用 **synchronized** 代码块可以更灵活地控制锁的范围和锁定对象，通过指定一个对象作为锁，只有获得该对象锁的线程才能进入同步代码块。
 
 ```java
@@ -273,7 +273,7 @@ public class Counter {
 
 > 利用同步代码块可以避免将整个方法都标记为同步，从而提高并发性能，也提升了代码灵活性，让我们可以根据实际需要选择合适的锁对象，比如 this、某个类的 Class 对象或自定义的锁对象来控制同步粒度。
 
-### 3.3 基于 CAS 和原子类
+### 基于 CAS 和原子类
 
 - **CAS 操作**
   - CAS（Compare-And-Swap）是一种无锁算法，利用硬件提供的原子操作指令实现对变量的更新；
@@ -282,18 +282,18 @@ public class Counter {
   - 提供 `AtomicInteger`、`AtomicLong`、`AtomicReference` 等类，用于实现简单数据类型和引用的原子操作；
   - 当线程争用激烈时，CAS 的自旋可能导致较高的 CPU 消耗，这时可以考虑 LongAdder 等更适合高并发计数的方案。
 
-## 4. 并发容器与工具类
+## 并发容器与工具类
 
-### 4.1 并发集合
+### 并发集合
 
 - **ConcurrentHashMap**：JDK 7 使用分段锁机制，JDK 8 采用 CAS + synchronized（数组+链表+红黑树）实现，线程安全且具有较高的并发性。
 - **CopyOnWriteArrayList** / **CopyOnWriteArraySet**：写操作时复制数组，读操作无锁，适合读多写少的场景；
 - **ConcurrentLinkedQueue**：基于无锁CAS设计的队列，适用于高并发场景下的非阻塞队列。
 - **BlockingDeque**：支持双端操作的阻塞队列。
 
-### 4.2 J.U.C 同步工具
+### J.U.C 同步工具
 
-#### 4.2.1 ReentrantLock
+#### ReentrantLock
 ##### 用法
 `ReentrantLock` 是一种显式锁，相对于 `synchronized` 关键字，它提供了更多的灵活性（例如可中断锁请求、公平锁等）。基本用法如下：
 ```java
@@ -321,7 +321,7 @@ public class Counter {
 - **公平性**：可以通过构造函数指定是否采用公平策略，使等待时间最长的线程优先获得锁。
 - **可中断性**：调用 `lockInterruptibly()` 方法时，如果线程在等待锁过程中被中断，可以抛出 `InterruptedException`。
 
-#### 4.2.2 CountDownLatch
+#### CountDownLatch
 ##### 用法
 `CountDownLatch` 用于使一个或多个线程等待其他线程完成一组操作。常用于主线程等待多个子线程执行完毕。
 ```java
@@ -355,7 +355,7 @@ public class WorkerDemo {
 - 当计数器归零时，所有等待的线程将被唤醒继续执行。
 - 适合用于一次性任务的同步，不可重用。
 
-#### 4.2.3 CyclicBarrier
+#### CyclicBarrier
 ##### 用法
 `CyclicBarrier` 用于让一组线程互相等待，直到所有线程都到达某个公共屏障点后再继续执行。常见应用包括多线程并行计算，最后结果汇总：
 ```java
@@ -388,7 +388,7 @@ public class BarrierDemo {
 - 当所有线程都调用了 `await()` 方法时，计数器归零，并触发预设的屏障动作（如果有）；
 - 屏障在使用完毕后可以重用（即“循环”屏障）。
 
-#### 4.2.4 Semaphore
+#### Semaphore
 `Semaphore` 用于控制同时访问特定资源的线程数量，相当于一个计数信号量。典型用法如限制并发访问数据库连接池或共享设备：
 ```java
 public class SemaphoreDemo {
@@ -423,7 +423,7 @@ public class SemaphoreDemo {
 - `release()` 操作会增加许可数，并唤醒等待线程。
 - 适用于资源访问限制和流量控制等场景。
 
-#### 4.2.5 BlockingQueue
+#### BlockingQueue
 
 ##### 用法
 
@@ -469,9 +469,9 @@ public class BlockingQueueDemo {
 - 当队列满时，调用 `put()` 的线程会被阻塞，直到有空间可用；
 - 保证了生产者和消费者之间的协调与数据安全。
 
-### 4.3 Future 和线程池
+### Future 和线程池
 
-#### 4.3.1 ThreadPoolExecutor
+#### ThreadPoolExecutor
 
 J.U.C 包中最常用的线程池实现，通过复用线程来降低线程创建和销毁的开销，提高响应速度，并通过统一管理线程来更好地控制并发任务的执行
 
@@ -504,7 +504,7 @@ ThreadPoolExecutor 提交任务的整体流程可以概括为三个步骤：
 3. **监控与调优**：可以通过覆盖 beforeExecute()、afterExecute() 方法和定期监控线程池状态，及时调整线程池参数，确保系统稳定运行。
 
 
-#### 4.3.2 Executor 和 ExecutorService
+#### Executor 和 ExecutorService
 提供了基于线程池管理任务执行的框架，避免频繁创建销毁线程的开销。
 ##### 用法
 Executor 框架主要用于线程池管理，避免频繁创建销毁线程带来的开销。最常用的是 `ThreadPoolExecutor` 以及通过 `Executors` 工具类创建的各种线程池（如固定线程池、缓存线程池、单线程池等）。
@@ -530,7 +530,7 @@ public class ExecutorDemo {
 - **线程复用**：线程池中的线程不断从队列中取任务执行，任务执行完后线程不会销毁，而是等待下一个任务；
 - **扩展策略**：可以配置核心线程数、最大线程数、空闲线程存活时间等参数，从而控制资源使用与任务处理效率。
 
-#### 4.3.3 其他
+#### 其他
 
 - **Future、Callable、FutureTask**：用于提交可返回值的任务，支持任务取消、阻塞获取任务结果等。
 - **ScheduledExecutorService**：支持延迟执行和周期性任务调度。

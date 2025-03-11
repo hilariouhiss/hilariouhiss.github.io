@@ -5,7 +5,7 @@ slug: mybatisplus-basic
 categories:
   - MybatisPlus
 description: 学习 MybatisPlus 的记录
-draft: true
+draft: false
 lastmod: 2024-12-20
 ---
 ## 使用方法

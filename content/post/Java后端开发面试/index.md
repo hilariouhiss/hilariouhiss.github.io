@@ -6,9 +6,8 @@ categories:
   - Java
 description: 对 Java、Spring、MySQL、分布式等面试知识的收集
 draft: false
-lastmod: 2024-12-21
+lastmod: 2025/03/11
 ---
-
 ## Java
 
 ### 特性
@@ -34,16 +33,16 @@ Java是一门**面向对象**的编程语言，其具有平台独立性，可移
 3.**多态**，同一个方法在不同对象中有不同表现形式，实现方式有：方法重载，方法重写和父类引用指向子类对象，提高代码灵活性和扩展性; 
 4.**抽象**，提取多个对象的共性，抽象类和接口。
 
-### 什么是类？
+### 接口和抽象类的区别？
 
-类是对象的模板或蓝图
+抽象类是对象的模板或蓝图，接口则是定义了一种行为
 
-### **Java基本数据类型**：
+### Java基本数据类型：
 
-| 简单类型   | byte | char      | short | int     | long | float | double | boolean  |
-| ---------- | ---- | --------- | ----- | ------- | ---- | ----- | ------ | -------- |
-| 二进制位数 | 8    | 16        | 16    | 32      | 64   | 32    | 64     | 看虚拟机 |
-| 包装类     | Byte | Character | Short | Integer | Long | Float | Double | Boolean  |
+| 简单类型  | byte | char      | short | int     | long | float | double | boolean |
+| ----- | ---- | --------- | ----- | ------- | ---- | ----- | ------ | ------- |
+| 二进制位数 | 8    | 16        | 16    | 32      | 64   | 32    | 64     | 取决于JVM  |
+| 包装类   | Byte | Character | Short | Integer | Long | Float | Double | Boolean |
 
 ### 为什么需要包装类？
 
@@ -138,14 +137,100 @@ Spring 事务的隔离级别：
 
 ## 设计模式
 
+### 面向对象设计原则
+
+1. ***单一职责原则***：一个类仅承担一个职责，且引起其变化的唯一原因应与其核心功能直接相关。例如，用户管理类应专注于用户增删改查，避免混杂权限校验逻辑。
+2. ***开闭原则***：软件实体应对扩展开放，对修改关闭。通过抽象化和多态机制（如接口或继承），允许新增功能时无需修改现有代码。例如，新增支付方式时通过实现支付接口扩展，而非修改原有支付类。
+3. ***里氏替换原则***：子类必须能够完全替代父类，且不影响程序正确性。例如，`List<String> list = new ArrayList<>()`中，`ArrayList`作为`List`的子类需保证所有父类方法的行为一致性。
+4. ***接口隔离原则***：客户端不应被迫依赖其不需要的接口。通过细化接口功能，避免“臃肿接口”。例如，将`Animal`接口拆分为`Flyable`和`Swimmable`，而非让所有动物类实现无关方法。
+5. ***依赖倒置原则***​：高层模块与低层模块应通过抽象交互，而非直接依赖具体实现。例如，数据库操作应依赖抽象的数据访问接口（如`Repository`），而非具体的MySQL或Oracle实现类。
+
+额外：
+- ***迪米特法则***：对象间应保持最小知识范围，减少耦合。例如，订单类不直接访问库存数据库，而是通过中间服务类代理。
+- ***合成/聚合复用原则***：优先通过组合（has-a）而非继承（is-a）实现代码复用。例如，汽车类包含引擎对象（组合），而非继承引擎类，避免继承带来的强耦合。
+
+### 常见的面向对象设计模式
+[ChatGPT](https://chatgpt.com/c/67ce891c-0d54-8001-9c3b-3a94f1d7da28)
+
+#### 创建型
+##### 单例模式
+核心作用：确保一个类只有一个实例，并提供全局访问点。
+应用场景：配置管理、线程池、日志记录器等需要全局唯一资源的场景。
+实现方式：
+1. 饿汉式
+```java
+public class SingletonHungry{
+	private static final SingletonHungry INSTANCE = new SingletonHungry();
+	private SingletonHungry(){}
+	public static SingletonHungry getInstance(){
+		return INSTANCE; 
+	}
+}
+```
+2. 双重检查锁
+```java
+public class SingletonLazy {
+    private static volatile SingletonLazy instance;
+    private SingletonLazy() {}
+    public static SingletonLazy getInstance() {
+        if(instance == null) {
+            synchronized(SingletonLazy.class) {
+                if(instance == null) {
+                    instance = new SingletonLazy();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+2. 静态内部类
+```java
+public class SingletonInner{
+    private SingletonInner(){}
+    private static class Holder{
+        private static final SingletonInner INSTANCE = new SingletonInner();
+
+    }
+    public static SingletonInner getInstance(){
+        return Holder.INSTANCE;
+    }
+}
+```
+2. 枚举类
+```java
+public enum Singleton{
+    INSTANCE;
+    
+}
+```
+
+
 
 
 ## 分布式
+### CAP定理
 
-CAP定理：一个分布式系统至多只能同时满足以下三个条件中的两个
+一个分布式系统至多只能同时满足以下三个条件中的两个
 1.一致性（Consistency）：指强一致性，强调数据的绝对正确。当一个写操作成功后，系统中所有节点应都能读取到最新的数据，若是写操作失败，所有节点也都不能读到这个数据。
 2.可用性（Availability）：系统提供的服务时刻处于100%可用，对每一个用户的请求都能在有限时间内返回结果，不能超时或拒绝。
 3.分区容错性（Partition Tolerance）：即使因为故障导致分布式系统中部分节点失效，此时系统也要持续对外提供服务。
 常见情况：在分布式系统中，系统不可能保证100%不出故障，而服务又必须能时刻对外提供服务时，`P` 则需要被满足。但保证了 `P`，`A`和 `C` 便只能选一个。
+
+### SPring Cloud 常用组件
+
+- **服务注册与发现（Service Registry and Discovery）**：
+    - **Eureka**：​由 Netflix 开发的服务注册与发现组件，允许服务实例在启动时注册自身，并使其他服务能够发现并与之通信。
+    - **Nacos**：
+- **负载均衡（Load Balancing）**：
+    - **Ribbon**：​客户端负载均衡器，提供多种负载均衡策略，使服务调用者能够以均衡的方式访问多个服务实例。
+    - **Sentinel**
+- **断路器（Circuit Breaker）**：
+    - **Hystrix**：​由 Netflix 开发的熔断器组件，用于处理服务调用中的故障，防止故障蔓延，增强系统的容错性和稳定性。
+- **API 网关（API Gateway）**：
+    - **Zuul**：​提供动态路由、监控、弹性负载和安全功能的 API 网关，作为服务入口，管理和路由请求到后端服务。
+    - **Spring Gateway**
+- **配置管理（Configuration Management）**：
+    - **Spring Cloud Config**：​集中式配置管理工具，支持为分布式系统中的各个微服务提供外部化配置，简化配置的管理和维护。
 
 ## DDD
