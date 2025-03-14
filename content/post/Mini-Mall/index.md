@@ -1,12 +1,12 @@
 ---
-title: Mini-Mall简易电商后端
+title: Mini-Mall 简易电商后端
 date: 2024-12-26
 slug: mini-mall
 categories:
-  - 开发
+  - Project
 description: 为学习微服务架构而开发的 Mini-Mall 商城后端系统
 draft: false
-lastmod: 2025-02-13
+lastmod: 2025-03-14
 ---
 ## 业务流程分析
 

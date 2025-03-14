@@ -3,10 +3,10 @@ title: Redis 常用数据类型
 date: 2025-01-09
 slug: redis-commonly-used-data-types
 categories:
-  - redis
+  - Redis
 description: Redis 常用数据类型以及命令
 draft: true
-lastmod: 2025-01-09
+lastmod: 2025-03-14
 ---
 ## 五大常用数据类型
 

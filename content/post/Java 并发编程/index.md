@@ -1,12 +1,12 @@
 ---
-title: Java并发编程基础
+title: Java 并发编程基础
 date: 2024-12-17
 slug: java-basic-concurrent
 categories:
   - Java
-description: Java并发编程的基础
+description: Java 并发编程的基础概念介绍
 draft: false
-lastmod: 2025-03-11
+lastmod: 2025-03-14
 ---
 ##  基础概念
 

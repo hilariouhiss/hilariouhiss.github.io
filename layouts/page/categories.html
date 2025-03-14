@@ -1,0 +1,32 @@
+{{ define "body-class" }}template-categories{{ end }}
+{{ define "main" }}
+<header>
+    {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
+    {{- $terms := $taxonomy.Pages -}}
+    {{ if $terms }}
+    <h1 class="section-title">分类</h1> <!-- 这里是标题 -->
+    <div class="subsection-list">
+        <div class="article-list--tile" style="display: flex; flex-direction: column;">
+            {{ range $terms }}
+            <div class="category-group" style="flex: 1 1 auto; margin: 10px;">
+                <h3 class="category-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h3>
+                <div class="article-list--horizontal" style="display: flex; overflow-x: auto;">
+                    {{ $articles := where .Site.RegularPages "Params.categories" "intersect" (slice .Title) }}
+                    {{ range $articles }}
+                    <div class="article-tile" style="flex: 0 0 auto; margin: 5px;">
+                        <!-- 显示文章图片 -->
+                        {{ partial "article-list/tile" (dict "context" . "size" "250x150" "Type" "taxonomy") }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</header>
+
+{{ partialCached "footer/footer" . }}
+{{ end }}

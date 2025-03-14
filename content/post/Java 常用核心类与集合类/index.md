@@ -1,12 +1,12 @@
 ---
-title: Java常用核心类与集合类
+title: Java 常用核心类与集合类
 date: 2024-12-24
 slug: java-core-and-collections
 categories:
   - Java
 description: Java 常用的核心类和集合类的功能与用法。
 draft: false
-lastmod: 2024-12-24
+lastmod: 2025-03-14
 ---
 
 ## 常用核心类

@@ -1,12 +1,12 @@
 ---
-title: MybatisPlus 基础
+title: Mybatis-Plus 基础
 date: 2024-12-16
-slug: mybatisplus-basic
+slug: mybatis-plus-basic
 categories:
-  - MybatisPlus
-description: 学习 MybatisPlus 的记录
+  - Mybatis-Plus
+description: 学习 Mybatis-Plus 的记录
 draft: false
-lastmod: 2024-12-20
+lastmod: 2025-03-14
 ---
 ## 使用方法
 

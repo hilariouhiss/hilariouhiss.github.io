@@ -3,10 +3,10 @@ title: 常用命令小全
 date: 2025-03-04
 slug: common-commands
 categories:
-  - 工具
+  - Tool
 description: Linux、Git、Docker等常用的工具的常用命令
 draft: false
-lastmod: 2025-03-11
+lastmod: 2025-03-14
 ---
 ## Linux 常用命令
 

@@ -40,7 +40,7 @@ languages:
 #         id:
 
 pagination:
-    pagerSize: 5
+    pagerSize: 10
 
 permalinks:
     post: /p/:slug/

@@ -4,10 +4,9 @@ date: 2024-12-25
 slug: spring-security-6-principles
 categories:
   - Spring
-  - Security
 description: 彻底搞懂 Spring Security 6.0 的实现原理
 draft: true
-lastmod: 2024-12-25
+lastmod: 2025-03-14
 ---
 参考来源：[一文带你读懂Spring Security 6.0的实现原理本文带你深入理解Spring Security的实现原理和基 - 掘金](https://juejin.cn/post/7260000714788896828)
 

@@ -1,12 +1,12 @@
 ---
-title: MySQL锁机制
+title: MySQL 锁机制
 date: 2025-02-08
 slug: mysql-locks
 categories:
-  - mysql
+  - MySQL
 description: MySQL 锁相关知识总结
 draft: false
-lastmod: 2025-03-11
+lastmod: 2025-03-14
 ---
 为了保证数据的并发访问和事务的隔离性，InnoDB 中的锁机制主要基于行级锁，但也结合了其他多种锁类型。
 

@@ -3,10 +3,10 @@ title: Obsidian Lastmod Updater
 date: 2025-03-12
 slug: obsidian-lastmod-updater
 categories:
-  - 工具
+  - Tool
 description: 使用 AI 工具开发一个Obsidian插件，实现在保存时，Obsidian 将自动更新 Front Matter 中的 lastmod 字段值
 draft: false
-lastmod: 2025-03-12
+lastmod: 2025-03-14
 ---
 ## 需求分析
 

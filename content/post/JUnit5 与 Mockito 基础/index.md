@@ -3,10 +3,10 @@ title: JUnit5 与 Mockito 基础
 date: 2025-03-03
 slug: junit5-mockito-basic-integration
 categories:
-  - java
+  - Java
 description: 本文通过示例演示了JUnit5 与 Mockito常用测试注解的基础方法。
 draft: false
-lastmod: 2025-03-03
+lastmod: 2025-03-14
 ---
 
 ## 准备工作
